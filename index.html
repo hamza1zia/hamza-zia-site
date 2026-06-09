@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamza Zia | Project Manager & Service Delivery Manager</title>
+  <title>Hamza Zia | Technical Technical Project Manager • Service Delivery Manager</title>
 
   <style>
     :root {
@@ -11,8 +11,8 @@
       --card: #ffffff;
       --text: #1f2937;
       --muted: #6b7280;
-      --accent: #d9467a;
-      --accent-dark: #b83264;
+      --accent: #f38020;
+      --accent-dark: #d96a0c;
       --border: #dde3ea;
       --shadow: 0 18px 45px rgba(31, 41, 55, 0.10);
     }
@@ -93,11 +93,11 @@
 
     .eyebrow {
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.76rem;
-      margin-bottom: 16px;
+      letter-spacing: 0.24em;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
     }
 
     h1 {
@@ -155,7 +155,7 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       max-width: 620px;
     }
@@ -165,6 +165,7 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
+      min-height: 170px;
     }
 
     .stat strong {
@@ -244,7 +245,7 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
 
@@ -419,15 +420,12 @@
     <main>
       <section class="hero">
         <div>
-          <p class="eyebrow">Project Manager & Service Delivery Manager</p>
+          <p class="eyebrow">Technical Project Manager • Service Delivery Manager</p>
 
           <h1>Turning technical complexity into <span>clear execution.</span></h1>
 
           <p class="hero-copy">
-            I manage cloud infrastructure projects and enterprise client delivery across DNS,
-            WAF, TLS, CDN, change management, incident escalation, reporting, and stakeholder
-            coordination. My work has included large-scale Cloudflare migrations, MSP operations,
-            executive status reporting, and cross-functional delivery for global clients.
+            I’m a Google Certified Project Manager with 2 years of experience delivering enterprise technology solutions across cybersecurity, cloud infrastructure, and digital operations. I have led 50+ Cloudflare projects for global organizations spanning Zero Trust, WAF, performance optimization, and CDN migrations. I have also managed a portfolio of 12+ Cloudflare Managed Services clients, exhibiting strong skills in executive reporting, KPI tracking, SLA adherence, change management, workflow improvement, and strategic client relationships.
           </p>
 
           <div class="actions">
@@ -438,15 +436,12 @@
           <div class="stats">
             <div class="stat">
               <strong>50+</strong>
-              <span>cloud and infrastructure projects coordinated</span>
+              <span>Successful Enterprise Cloudflare Projects as PM</span>
             </div>
-            <div class="stat">
-              <strong>250+</strong>
-              <span>websites migrated in a global Cloudflare program</span>
-            </div>
+            
             <div class="stat">
               <strong>12+</strong>
-              <span>managed services clients supported as SDM</span>
+              <span>Managed Services Clients supported as SDM</span>
             </div>
           </div>
         </div>
@@ -454,7 +449,7 @@
         <div class="portrait-wrap">
           <div class="shape"></div>
           <div class="portrait-card">
-            <img src="headshot.jpg" alt="Headshot of Hamza Zia" />
+            <img id="slideshow" src="headshot1.jpg" alt="Photos of Hamza Zia" />
             <p class="portrait-note">
               Technical project delivery, managed services operations, and cloud infrastructure coordination.
             </p>
@@ -468,8 +463,7 @@
 
         <div class="cards">
           <div class="card">
-            <div class="icon">01</div>
-            <h3>Project Management</h3>
+<h3>Project Management</h3>
             <p>
               Managed scope, timelines, dependencies, risks, status reporting, and stakeholder communication
               across cloud migration and infrastructure delivery projects.
@@ -477,23 +471,14 @@
           </div>
 
           <div class="card">
-            <div class="icon">02</div>
-            <h3>Service Delivery Management</h3>
+<h3>Service Delivery Management</h3>
             <p>
               Supported MSP clients through SLA tracking, incident escalation, weekly operations calls,
               monthly executive reviews, ticket reporting, and service improvement follow-up.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">03</div>
-            <h3>Cloud & Security Delivery</h3>
-            <p>
-              Coordinated workstreams involving Cloudflare DNS, WAF, bot management, TLS, CDN configuration,
-              change requests, production readiness, and client handover.
-            </p>
-          </div>
-        </div>
+          
       </section>
 
       <section id="experience">
@@ -601,5 +586,23 @@
       </p>
     </footer>
   </div>
+
+  <script>
+    const images = [
+      "headshot1.jpg",
+      "headshot2.jpg",
+      "headshot3.jpg",
+      "headshot4.jpg"
+    ];
+
+    let current = 0;
+    const slideshow = document.getElementById("slideshow");
+
+    setInterval(() => {
+      current = (current + 1) % images.length;
+      slideshow.src = images[current];
+    }, 3000);
+  </script>
+
 </body>
 </html>
