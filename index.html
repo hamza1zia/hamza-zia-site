@@ -87,8 +87,8 @@
       grid-template-columns: 1.05fr 0.95fr;
       gap: 54px;
       align-items: center;
-      min-height: calc(100vh - 76px);
-      padding: 38px 0 76px;
+      min-height: auto;
+      padding: 10px 0 12px;
     }
 
     .eyebrow {
@@ -165,7 +165,7 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
-      min-height: 170px;
+      min-height: 120px;
     }
 
     .stat strong {
@@ -184,6 +184,7 @@
     .portrait-wrap {
       position: relative;
       justify-self: center;
+      margin-top: -100px;
     }
 
     .portrait-card {
@@ -224,18 +225,18 @@
     }
 
     section {
-      padding: 54px 0;
+      padding: 30px 0;
     }
-
+    
     .section-kicker {
       color: var(--accent);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      font-size: 0.74rem;
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
       margin-bottom: 8px;
     }
-
+    
     .section-title {
       font-size: clamp(1.9rem, 3vw, 2.7rem);
       line-height: 1.1;
@@ -337,6 +338,59 @@
       font-weight: 650;
     }
 
+
+    .focus-sections {
+      display: grid;
+      gap: 22px;
+    }
+
+    .focus-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+    }
+
+    .focus-section h3 {
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .focus-section p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .focus-item {
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .focus-item strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+    }
+
+    .focus-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
     .cta {
       background: var(--text);
       color: white;
@@ -384,11 +438,65 @@
       }
 
       .stats,
-      .cards {
+      .cards,
+      .focus-grid {
         grid-template-columns: 1fr;
       }
 
-      .cta {
+  
+    .focus-sections {
+      display: grid;
+      gap: 22px;
+    }
+
+    .focus-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+    }
+
+    .focus-section h3 {
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .focus-section p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .focus-item {
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .focus-item strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+    }
+
+    .focus-item span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .cta {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -410,9 +518,8 @@
       </div>
 
       <nav>
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
+        <a href="#project-management">Project Management</a>
+        <a href="#service-delivery-management">Service Delivery Management</a>
         <a href="resume.pdf" target="_blank">Resume</a>
       </nav>
     </header>
@@ -420,29 +527,17 @@
     <main>
       <section class="hero">
         <div>
-          <p class="eyebrow">Technical Project Manager • Service Delivery Manager</p>
+
 
           <h1>Turning technical complexity into <span>clear execution.</span></h1>
 
           <p class="hero-copy">
-            I’m a Google Certified Project Manager with 2 years of experience delivering enterprise technology solutions across cybersecurity, cloud infrastructure, and digital operations. I have led 50+ Cloudflare projects for global organizations spanning Zero Trust, WAF, performance optimization, and CDN migrations. I have also managed a portfolio of 12+ Cloudflare Managed Services clients, exhibiting strong skills in executive reporting, KPI tracking, SLA adherence, change management, workflow improvement, and strategic client relationships.
+            I am a Google Certified Project Manager with 2 years of experience delivering enterprise technology solutions across cybersecurity, cloud infrastructure, and web performance optimization. I have managed Cloudflare projects and managed services engagements for global organizations, including Fortune 500 companies. My background in mathematics, economics, and data science provides a strong foundation in statistical analysis, predictive modeling, and data-driven decision making.
           </p>
 
           <div class="actions">
             <a class="btn primary" href="resume.pdf" target="_blank">View Resume</a>
-            <a class="btn secondary" href="mailto:hamza13579zia@gmail.com">Email Me</a>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>50+</strong>
-              <span>Successful Enterprise Cloudflare Projects as PM</span>
-            </div>
-            
-            <div class="stat">
-              <strong>12+</strong>
-              <span>Managed Services Clients supported as SDM</span>
-            </div>
+            <a class="btn secondary" href="mailto:contact@hamza-zia.com">Email Me</a>
           </div>
         </div>
 
@@ -450,139 +545,154 @@
           <div class="shape"></div>
           <div class="portrait-card">
             <img id="slideshow" src="headshot1.jpg" alt="Photos of Hamza Zia" />
-            <p class="portrait-note">
-              Technical project delivery, managed services operations, and cloud infrastructure coordination.
-            </p>
+
           </div>
         </div>
       </section>
 
       <section id="work">
+      <!--
         <p class="section-kicker">What I Do</p>
-        <h2 class="section-title">I help teams deliver technical work with structure, visibility, and follow-through.</h2>
+      -->
+        <h2 class="section-title">I help teams deliver technical work with structure and visibility.</h2>
 
-        <div class="cards">
-          <div class="card">
-<h3>Project Management</h3>
+        <div class="focus-sections">
+          <div class="focus-section" id="project-management">
+            <h3>Project Management</h3>
             <p>
-              Managed scope, timelines, dependencies, risks, status reporting, and stakeholder communication
-              across cloud migration and infrastructure delivery projects.
-            </p>
-          </div>
-
-          <div class="card">
-<h3>Service Delivery Management</h3>
-            <p>
-              Supported MSP clients through SLA tracking, incident escalation, weekly operations calls,
-              monthly executive reviews, ticket reporting, and service improvement follow-up.
-            </p>
-          </div>
-
-          
-      </section>
-
-      <section id="experience">
-        <p class="section-kicker">Selected Experience</p>
-        <h2 class="section-title">Recent delivery work</h2>
-
-        <div class="split">
-          <div class="card">
-            <h3>Delivery Style</h3>
-            <p>
-              I work best at the intersection of technical teams and business stakeholders:
-              translating ambiguous requirements into action plans, keeping delivery visible,
-              surfacing blockers early, and making sure decisions, owners, and next steps are clear.
+              50+ enterprise Cloudflare projects delivered across global organizations, including migrations, security initiatives, performance optimization programs, and infrastructure modernization efforts. Responsible for planning, coordination, risk management, resource management, stakeholder engagement, and production delivery throughout the project lifecycle.
             </p>
 
-            <div class="chips">
-              <span class="chip">RAID tracking</span>
-              <span class="chip">Status reporting</span>
-              <span class="chip">Change coordination</span>
-              <span class="chip">Client communication</span>
-              <span class="chip">Executive updates</span>
-              <span class="chip">Incident escalation</span>
+            <div class="focus-grid">
+              <div class="focus-item">
+                <strong>IKEA</strong>
+                <span>Led global cross-functional teams and coordinated the migration of 250+ websites across 50+ Ingka Group subsidiaries from Akamai to Cloudflare, delivering the program within a four-month timeline.</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>SharkNinja</strong>
+                <span>Managed Cloudflare security, performance, and infrastructure initiatives supporting SharkNinja’s global e-commerce platform, including UK and European market launches and operational readiness activities.</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>Genuine Parts Company (GPC)</strong>
+                <span>Led multiple migration, onboarding, performance optimization, and security projects across North America, EMEA, and APAC, coordinating regional stakeholders and engineering teams throughout project delivery.</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>NCR Voyix</strong>
+                <span>Managed infrastructure and security initiatives including Cloudflare Workers deployments, TLS modernization, Load Balancing implementations, Page Shield expansion, and large-scale domain onboarding programs.</span>
+              </div>
+              
+              <div class="focus-item">
+                <strong>Carters</strong>
+                <span>Managed multiple security and performance improvement projects across Carter’s digital ecosystem, delivering WAF upgrades, caching optimization, production routing enhancements, and large-scale redirect implementations.</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>Floor & Decor</strong>
+                <span>Led enterprise authentication, API modernization, and infrastructure standardization projects, including SSO enablement, API migrations, and Infrastructure-as-Code initiatives.</span>
+              </div>
+
             </div>
           </div>
 
-          <div class="timeline">
-            <div class="role">
-              <div class="role-top">
-                <h3>Cloudflare Migration Project Manager</h3>
-                <span class="date">Enterprise delivery</span>
-              </div>
-              <p>
-                Led coordination for a global migration involving 250+ websites across IKEA and Ingka entities.
-                Managed two global teams, migration batching, documentation, DNS cutover coordination,
-                WAF modernization, TLS settings, progress reporting, and project handover.
-              </p>
-            </div>
+          <div class="focus-section" id="service-delivery-management">
+            <h3>Service Delivery Management</h3>
+            <p>
+              Point of contact for 12+ Cloudflare Managed Services clients, coordinating service delivery, operational planning, and client engagement. Responsibilities included SLA management, incident and escalation coordination, operational reporting, stakeholder reviews, service health monitoring, change management oversight, and continuous service improvement initiatives.
+            </p>
 
-            <div class="role">
-              <div class="role-top">
-                <h3>Service Delivery Manager</h3>
-                <span class="date">MSP portfolio</span>
+            <div class="focus-grid">
+              <div class="focus-item">
+                <strong>Service Operations & Governance</strong>
+                <span>  • SLA governance and KPI reporting <br>
+                        • Operational review & stakeholder alignment <br>
+                        • Executive reporting & trend analysis<br>
+                        • Service health & operational oversight<br>
+                        • Continuous service improvement initiatives</span>
               </div>
-              <p>
-                Managed service delivery visibility for clients including Harley-Davidson, Carter’s,
-                RaceTrac, SharkNinja, Sunbelt Rentals, and DirecTV. Owned weekly operations rhythm,
-                monthly reporting, SLA/KPI tracking, ticket review, escalation follow-up, and client communication.
-              </p>
-            </div>
 
-            <div class="role">
-              <div class="role-top">
-                <h3>Technical Project Coordinator</h3>
-                <span class="date">Cloud operations</span>
+              <div class="focus-item">
+                <strong>Incident & Escalation Management</strong>
+                <span>• Cross-functional incident coordination<br>
+                      • Client escalation management<br>
+                      • Risk identification & mitigation <br>
+                      • Root cause analysis (RCA) & communication <br>
+                      • Service continuity planning </span>
               </div>
-              <p>
-                Coordinated technical tasks across DNS, WAF, rate limiting, bot management, certificates,
-                alerting, production changes, and documentation using tools including ServiceNow, Jira,
-                Smartsheet, Zoho Desk, and Power BI.
-              </p>
+
+              <div class="focus-item">
+                <strong>IT Service Management (ITSM)</strong>
+                <span>• ITSM integrations & onboardings <br>
+                      • ITSM administration (ServiceNow, Jira) <br>
+                      • PagerDuty integration & administration <br>
+                      • Ticket lifecycle management <br>
+                      • Process standardization</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>SOC & Monitoring Operations</strong>
+                <span>• Alert threshold definition<br>
+                      • Escalation workflow design<br>
+                      • Monitoring policy reviews<br>
+                      • Incident response alignment<br>
+                      • Operational visibility improvements</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>Change & Release Management</strong>
+                <span>• Change management oversight<br>
+                      • CAB petitioning & approvals<br>
+                      • Maintenance planning<br>
+                      • Production readiness reviews<br>
+                      • Release coordination</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>Continuous Service Improvement</strong>
+                <span>• Reporting enhancements & automation<br>
+                      • Workflow & process optimization<br>
+                      • Recurring issue analysis<br>
+                      • Operational automation<br>
+                      • Service maturity initiatives</span>
+              </div>
+
+            </div>
+          </div>
+<!--
+          <div class="focus-section" id="data-science">
+            <h3>Data Science</h3>
+            <p>
+              My background in mathematics, economics, and data science helps me approach delivery with analytical
+              thinking. I am comfortable working with data, identifying patterns, building reports, and using
+              quantitative reasoning to support better decisions.
+            </p>
+
+            <div class="focus-grid">
+              <div class="focus-item">
+                <strong>Analytical Foundation</strong>
+                <span>Mathematics, economics, statistics, predictive modeling, and structured problem solving.</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>Reporting & Insights</strong>
+                <span>Power BI reporting, KPI tracking, trend analysis, and operational visibility.</span>
+              </div>
+
+              <div class="focus-item">
+                <strong>Data-Driven Decisions</strong>
+                <span>Using evidence, metrics, and analysis to guide planning, prioritization, and improvement.</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section id="skills">
-        <p class="section-kicker">Skills & Credentials</p>
-        <h2 class="section-title">Practical delivery skills backed by cloud project experience.</h2>
-
-        <div class="cards">
-          <div class="card">
-            <h3>Methods</h3>
-            <p>Agile, Waterfall, Kanban, Gantt planning, burndown tracking, RAID logs, project status reporting, executive communication, and client-facing delivery.</p>
-          </div>
-
-          <div class="card">
-            <h3>Tools</h3>
-            <p>ServiceNow, Jira, Smartsheet, Zoho Desk, Power BI, Cloudflare dashboard, GitHub, VS Code/Cursor, and technical documentation workflows.</p>
-          </div>
-
-          <div class="card">
-            <h3>Certifications</h3>
-            <p>Google Project Management Certificate, Cloudflare Configuration Engineer, Cloudflare Sales Engineer, NVIDIA Technical Compute, and NVIDIA Technical Networking.</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="cta">
-        <div>
-          <h2>Looking for technical PM, service delivery, or client success roles.</h2>
-          <p>
-            I am especially interested in roles where I can combine project execution, technical coordination,
-            cloud infrastructure knowledge, and clear client communication.
-          </p>
-        </div>
-
-        <a class="btn primary" href="resume.pdf" target="_blank">Open Resume</a>
-      </div>
-    </main>
-
+-->
     <footer>
       <p>
         Hamza Zia · Tennessee ·
-        <a href="mailto:hamza13579zia@gmail.com">hamza13579zia@gmail.com</a>
+        <a href="mailto:contact@hamza-zia.com">contact@hamza-zia.com</a>
       </p>
     </footer>
   </div>
