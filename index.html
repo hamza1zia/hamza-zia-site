@@ -350,6 +350,7 @@
       border-radius: 18px;
       padding: 28px;
       box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+      overflow: hidden;
     }
 
     .focus-section h3 {
@@ -366,29 +367,149 @@
       margin-bottom: 18px;
     }
 
+    .portfolio-toggle {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .portfolio-toggle summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      font-weight: 800;
+      color: var(--accent);
+      background: transparent;
+      font-size: 1.35rem;
+    }
+
+    .portfolio-toggle summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .portfolio-toggle summary::after {
+      content: "+";
+      color: var(--accent);
+      font-size: 1.35rem;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .portfolio-toggle[open] summary::after {
+      content: "–";
+    }
+
     .focus-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 14px;
-      margin-top: 18px;
+      padding: 0 18px 18px;
     }
 
     .focus-item {
-      background: rgba(238, 241, 245, 0.72);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 16px;
+      padding: 18px;
+      min-width: 0;
     }
 
     .focus-item strong {
       display: block;
-      font-size: 0.98rem;
+      font-size: 1rem;
       margin-bottom: 6px;
     }
 
     .focus-item span {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.93rem;
+    }
+
+    .project-carousel {
+      position: relative;
+      margin-top: 20px;
+      min-height: 430px;
+    }
+
+    .project-card {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      align-content: start;
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      text-decoration: none;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      overflow: hidden;
+    }
+
+    .project-card.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.08);
+    }
+
+    .project-card strong {
+      display: block;
+      font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .project-card img {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      margin-bottom: 14px;
+      background: #d7dde5;
+    }
+
+
+    .project-card span {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 0;
+      background: #c7ced8;
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background: var(--accent);
     }
 
     .cta {
@@ -438,65 +559,28 @@
       }
 
       .stats,
-      .cards,
-      .focus-grid {
+      .cards {
         grid-template-columns: 1fr;
       }
 
-  
-    .focus-sections {
-      display: grid;
-      gap: 22px;
-    }
+      .focus-section {
+        padding: 22px;
+      }
 
-    .focus-section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
-    }
+      .focus-grid {
+        grid-template-columns: 1fr;
+        padding: 0 14px 14px;
+      }
 
-    .focus-section h3 {
-      font-size: clamp(1.45rem, 2.2vw, 2rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
+      .portfolio-toggle summary {
+        padding: 15px 14px;
+      }
 
-    .focus-section p {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 900px;
-      margin-bottom: 18px;
-    }
+      .project-carousel {
+        min-height: 420px;
+      }
 
-    .focus-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .focus-item {
-      background: rgba(238, 241, 245, 0.72);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .focus-item strong {
-      display: block;
-      font-size: 0.98rem;
-      margin-bottom: 6px;
-    }
-
-    .focus-item span {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .cta {
+      .cta {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -504,6 +588,46 @@
       .role-top {
         flex-direction: column;
         gap: 4px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
+      header {
+        height: 64px;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 12vw, 3.2rem);
+      }
+
+      .hero-copy,
+      .focus-section p {
+        font-size: 0.98rem;
+      }
+
+      .focus-section {
+        padding: 18px;
+        border-radius: 16px;
+      }
+
+      .focus-item {
+        padding: 16px;
+      }
+
+      .project-carousel {
+        min-height: 400px;
+      }
+
+      .project-card {
+        padding: 18px;
+      }
+
+      .project-card img {
+        aspect-ratio: 16 / 9;
       }
     }
   </style>
@@ -520,6 +644,7 @@
       <nav>
         <a href="#project-management">Project Management</a>
         <a href="#service-delivery-management">Service Delivery Management</a>
+        <a href="#data-science">Data Science</a>
         <a href="resume.pdf" target="_blank">Resume</a>
       </nav>
     </header>
@@ -563,8 +688,10 @@
               50+ enterprise Cloudflare projects delivered across global organizations, including migrations, security initiatives, performance optimization programs, and infrastructure modernization efforts. Responsible for planning, coordination, risk management, resource management, stakeholder engagement, and production delivery throughout the project lifecycle.
             </p>
 
-            <div class="focus-grid">
-              <div class="focus-item">
+            <details class="portfolio-toggle">
+              <summary>View My Project Management Portfolio</summary>
+              <div class="focus-grid">
+                <div class="focus-item">
                 <strong>IKEA</strong>
                 <span>Led global cross-functional teams and coordinated the migration of 250+ websites across 50+ Ingka Group subsidiaries from Akamai to Cloudflare, delivering the program within a four-month timeline.</span>
               </div>
@@ -594,7 +721,8 @@
                 <span>Led enterprise authentication, API modernization, and infrastructure standardization projects, including SSO enablement, API migrations, and Infrastructure-as-Code initiatives.</span>
               </div>
 
-            </div>
+              </div>
+            </details>
           </div>
 
           <div class="focus-section" id="service-delivery-management">
@@ -603,9 +731,11 @@
               Point of contact for 12+ Cloudflare Managed Services clients, coordinating service delivery, operational planning, and client engagement. Responsibilities included SLA management, incident and escalation coordination, operational reporting, stakeholder reviews, service health monitoring, change management oversight, and continuous service improvement initiatives.
             </p>
 
-            <div class="focus-grid">
-              <div class="focus-item">
-                <strong>Service Operations & Governance</strong>
+            <details class="portfolio-toggle">
+              <summary>View My Service Delivery Expertise</summary>
+              <div class="focus-grid">
+                <div class="focus-item">
+                  <strong>Service Operations & Governance</strong>
                 <span>  • SLA governance and KPI reporting <br>
                         • Operational review & stakeholder alignment <br>
                         • Executive reporting & trend analysis<br>
@@ -658,40 +788,50 @@
                       • Service maturity initiatives</span>
               </div>
 
-            </div>
+              </div>
+            </details>
           </div>
-<!--
+
           <div class="focus-section" id="data-science">
             <h3>Data Science</h3>
             <p>
-              My background in mathematics, economics, and data science helps me approach delivery with analytical
-              thinking. I am comfortable working with data, identifying patterns, building reports, and using
-              quantitative reasoning to support better decisions.
+              Data science projects that combine analytical thinking, statistical reasoning, and clear communication to turn complex datasets into practical insights.
             </p>
 
-            <div class="focus-grid">
-              <div class="focus-item">
-                <strong>Analytical Foundation</strong>
-                <span>Mathematics, economics, statistics, predictive modeling, and structured problem solving.</span>
-              </div>
+            <div class="project-carousel" aria-label="Data science project carousel">
+              <a class="project-card active" href="coming-soon.html">
+              <strong>Sports Analytics</strong>
+              <img src="sportsbanner.jpg" alt="Banner image for sports analytics project" />
+              <span>How does age impact NBA player performance?</span>           
+              </a>
 
-              <div class="focus-item">
-                <strong>Reporting & Insights</strong>
-                <span>Power BI reporting, KPI tracking, trend analysis, and operational visibility.</span>
-              </div>
+              <a class="project-card" href="coming-soon.html">
+                <strong>Financial Modeling</strong>
+                <img src="betterfibanner.jpg" alt="Banner image for betterfi project" />
+                <span>BetterFi project</span>
+              </a>
 
-              <div class="focus-item">
-                <strong>Data-Driven Decisions</strong>
-                <span>Using evidence, metrics, and analysis to guide planning, prioritization, and improvement.</span>
-              </div>
+              <a class="project-card" href="coming-soon.html">
+                <strong>Time Series Forecasting</strong>
+                <img src="tsbanner.jpg" alt="Banner image for time series project" />
+                <span>Time series project.</span>
+              </a>
+            </div>
+
+            <div class="carousel-dots" aria-label="Data science carousel controls">
+              <button class="carousel-dot active" type="button" aria-label="Show project 1"></button>
+              <button class="carousel-dot" type="button" aria-label="Show project 2"></button>
+              <button class="carousel-dot" type="button" aria-label="Show project 3"></button>
             </div>
           </div>
         </div>
       </section>
--->
+
+    </main>
+
     <footer>
       <p>
-        Hamza Zia · Tennessee ·
+        Hamza Zia ·
         <a href="mailto:contact@hamza-zia.com">contact@hamza-zia.com</a>
       </p>
     </footer>
@@ -712,6 +852,26 @@
       current = (current + 1) % images.length;
       slideshow.src = images[current];
     }, 3000);
+
+    const projectCards = document.querySelectorAll(".project-card");
+    const carouselDots = document.querySelectorAll(".carousel-dot");
+    let activeProject = 0;
+
+    function showProject(index) {
+      projectCards[activeProject].classList.remove("active");
+      carouselDots[activeProject].classList.remove("active");
+      activeProject = index;
+      projectCards[activeProject].classList.add("active");
+      carouselDots[activeProject].classList.add("active");
+    }
+
+    carouselDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => showProject(index));
+    });
+
+    setInterval(() => {
+      showProject((activeProject + 1) % projectCards.length);
+    }, 4000);
   </script>
 
 </body>
