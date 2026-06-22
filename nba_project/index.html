@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Does Age Impact NBA Performance? | Hamza Zia</title>
+
+  <style>
+    :root {
+      --bg: #eef1f5;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #f38020;
+      --accent-dark: #d96a0c;
+      --border: #dde3ea;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 0.92rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+      padding: 24px 0 34px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.86rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 690px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(243, 128, 32, 0.22);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .project-card-hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card-hero::before {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 28px;
+      background: var(--accent);
+      opacity: 0.12;
+      right: -55px;
+      top: -55px;
+      transform: rotate(12deg);
+    }
+
+    .snapshot-grid {
+      display: grid;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .snapshot-item {
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .snapshot-item strong {
+      display: block;
+      color: var(--accent);
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .snapshot-item span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3vw, 2.7rem);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    section.project-section {
+      padding: 8px 0 26px;
+    }
+
+    .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+      overflow: hidden;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+    }
+
+    .content-card h2 {
+      font-size: clamp(1.55rem, 2.4vw, 2.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+    }
+
+    .content-card h3 {
+      font-size: 1.05rem;
+      margin: 18px 0 8px;
+    }
+
+    .content-card p {
+      color: #4b5563;
+      font-size: 1rem;
+      max-width: 100%;
+      margin-bottom: 16px;
+    }
+
+    
+.project-banner {
+  padding: 4px 0 4px;
+}
+
+.banner-placeholder {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+}
+
+.banner-placeholder .project-image {
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  border: none;
+  border-radius: 0;
+  display: block;
+}
+    
+    .media-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 22px;
+    }
+
+    .media-pair .project-image {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #d7dde5;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .between-note {
+      width: 100%;
+      max-width: none;
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      display: block;
+    }
+
+    .between-note strong {
+      color: var(--text);
+    }
+
+    .insight-box {
+      margin: 18px 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .insight-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .insight-item strong {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    .insight-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    ul {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 18px 18px;
+      color: #4b5563;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .skill-chip {
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 12px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .cta {
+      background: var(--text);
+      color: white;
+      border-radius: 20px;
+      padding: 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin: 48px 0 70px;
+    }
+
+    .cta p {
+      color: #cbd5e1;
+      max-width: 680px;
+      margin-top: 8px;
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .cta-button-only {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 50px;
+    }
+
+    @media (max-width: 880px) {
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .insight-box,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .content-card {
+        padding: 22px;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
+      header {
+        height: 64px;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 12vw, 3.2rem);
+      }
+
+      .hero-copy,
+      .content-card p {
+        font-size: 0.98rem;
+      }
+
+      .content-card {
+        padding: 18px;
+        border-radius: 16px;
+        width: 100%;
+      }
+
+      .project-banner {
+        padding: 8px 0 18px;
+      }
+
+      .banner-placeholder {
+        border-radius: 16px;
+      }
+
+      .banner-placeholder .project-image {
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  border: none;
+  border-radius: 0;
+  display: block;
+}
+
+      .media-pair {
+        width: 100%;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .media-pair .project-image {
+        width: 100%;
+        max-width: none;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .between-note {
+        padding: 14px;
+        font-size: 0.92rem;
+      }
+    }
+      .project-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        margin: 24px 0;
+      }
+
+      .project-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1rem;
+      }
+
+      .project-table th,
+      .project-table td {
+        text-align: left;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+
+      .project-table th {
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      .project-table td {
+        color: #374151;
+      }
+
+      .project-table td:first-child {
+        font-weight: 650;
+        width: 35%;
+      }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="index.html" aria-label="Back to Hamza Zia homepage">
+        <div class="brand-mark">HZ</div>
+        <span>Hamza Zia</span>
+      </a>
+
+      <nav>
+        <a href="index.html#project-management">Project Management</a>
+        <a href="index.html#service-delivery-management">Service Delivery Management</a>
+        <a href="index.html#data-science">Data Science</a>
+        <a href="resume.pdf" target="_blank">Resume</a>
+      </nav>
+    </header>
+
+    <main>
+      
+
+<section style="padding: 12px 0 8px;">
+  <h1 style="font-size: clamp(2.5rem, 5vw, 4.5rem); line-height:1.05; letter-spacing:-0.04em; margin:0;">
+    How Does Age Impact <span style="color:#f38020;">NBA Performance?</span>
+  </h1>
+</section>
+
+<section class="project-banner">
+  <div class="banner-placeholder">
+    <img class="project-image" src="nba_banner.jpg" alt="Project banner image" />
+  </div>
+</section>
+
+
+      <section class="project-section" id="executive-summary">
+        <div class="content-card">
+<!-- <h2>How Does Age Impact NBA Performance?</h2> -->
+          <p>
+            I was eight years old when I first saw LeBron James play.
+          </p>
+          <p>
+            I must have replayed his thunderous dunk over Kevin Garnett during Game 4 of the 2008 Eastern Conference Semifinals a thousand times. Growing up in Pakistan, basketball was nowhere near as popular as cricket or soccer, so my basketball hoop was usually a soccer ball and whatever wall happened to be nearby. Still, there was something captivating about watching LeBron. Even as a kid, it felt like I was watching someone special.
+          </p>
+          <p>
+            I’m now 25 years old, and LeBron is preparing for his 24th NBA season.
+          </p>
+          <p>
+            Most professional athletes are fortunate to have careers that last a decade. Even among NBA players, maintaining elite performance into your mid-thirties is considered exceptional. Yet LeBron has continued performing at an All-NBA level well into an age where many players have long since retired. He’s not alone, either. Players like Kareem Abdul-Jabbar, Tim Duncan, Dirk Nowitzki, and Vince Carter all built remarkably long careers, remaining productive long after their expected prime years.
+          </p>
+          <p>
+            As both a basketball fan and a math nerd, I couldn’t help but wonder: how much does age actually affect player performance?
+          </p>
+          <p>
+            We often hear that athletes inevitably decline as they get older, but the careers of players like LeBron seem to challenge that assumption. When does an NBA player truly peak? How quickly does performance decline? And do superstar players age differently than the average player?
+          </p>
+          <p>
+            To explore these questions, I analyzed NBA player data from the 2002 through 2022 seasons, combining game statistics with player age information to examine how performance changes over the course of a career. Rather than looking at every possible metric, I focused on two that are easy to understand and closely tied to a player’s role on the court: points scored and minutes played.
+          </p>
+          <p>
+            The analysis begins by examining league-wide trends, looking at how age relates to scoring output and playing time across thousands of NBA games. From there, I narrow the focus to the league’s top scorers to see whether elite players follow the same aging patterns as everyone else or whether they manage to bend the curve.
+          </p>
+          <p>
+            What started as a simple basketball question ultimately became an opportunity to explore a broader idea: how data can help us separate perception from reality. Along the way, we’ll uncover some expected trends, a few surprising ones, and perhaps gain a better understanding of what makes players like LeBron James so extraordinary.
+          </p>
+          <!--
+          <div class="media-pair">
+            <img class="project-image" src="nba-age-summary-01.jpg" alt="Summary visual for NBA age and performance project" />
+            <div class="between-note"><strong>Project framing:</strong> The goal was not just to describe player aging, but to turn raw season-level data into a clear decision-making narrative for roster construction and player evaluation.</div>
+            <img class="project-image" src="nba-age-summary-02.jpg" alt="Overview chart showing NBA performance trends by age" />
+          </div>
+        -->
+        </div>
+      </section>
+        <!--
+      <section class="project-section" id="question">
+        <div class="content-card">
+<h2>The Question</h2>
+          <p>
+            Teams constantly face difficult decisions regarding player development, contract extensions, and roster construction. Understanding how player performance evolves with age can help organizations make more informed decisions.
+          </p>
+          <h3>This project sought to answer three key questions:</h3>
+          <ul>
+            <li>At what ages do NBA players perform at their highest level?</li>
+            <li>How does age impact scoring production?</li>
+            <li>Do elite scorers experience aging differently than the average player?</li>
+          </ul>
+          <div class="media-pair">
+            <img class="project-image" src="nba-age-question-01.jpg" alt="Visual introducing the NBA performance research question" />
+            <div class="between-note"><strong>Business context:</strong> Instead of starting with code, this project begins with the decision teams are trying to make: when to invest, when to develop, and when to adjust expectations.</div>
+            <img class="project-image" src="nba-age-question-02.jpg" alt="Visual showing player development and roster construction considerations" />
+          </div>
+        </div>
+      </section>
+        -->
+      <section class="project-section" id="data-approach">
+        <div class="content-card">
+<h2>Data &amp; Approach</h2>
+          <p>
+            I analyzed player data spanning the 2002–2022 seasons, sourced through the hoopR package. Using R, I combined player demographic information with game-level statistics to create a unified dataset containing both performance metrics and age data. After cleaning and preparing the data, I calculated each player’s age during a given season and examined how that age related to two key indicators of performance: points scored and minutes played.          
+          </p>
+          <p>
+            The analysis was conducted in two stages. First, I looked at league-wide trends to understand how age impacts the average NBA player. I then narrowed the focus to the league’s highest-scoring players to see whether elite performers follow the same aging patterns as the broader population. Throughout the project, I used data visualization and linear regression models to identify trends, quantify relationships, and uncover insights that might not be immediately obvious from raw statistics alone.
+          </p>
+          <div class="project-table-wrap">
+            <table class="project-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Time Period</td>
+                  <td>2002–2022 NBA Seasons</td>
+                </tr>
+                <tr>
+                  <td>Data Sources</td>
+                  <td>NBA Box Score Data &amp; Player Information</td>
+                </tr>
+                <tr>
+                  <td>Tools Used</td>
+                  <td>R, dplyr, ggplot2, Linear Regression</td>
+                </tr>
+                <tr>
+                  <td>Performance Metrics</td>
+                  <td>Points Scored, Minutes Played</td>
+                </tr>
+                <tr>
+                  <td>Primary Variable</td>
+                  <td>Player Age</td>
+                </tr>
+                <tr>
+                  <td>Analysis Type</td>
+                  <td>Exploratory Data Analysis &amp; Statistical Modeling</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="media-pair">
+            <img class="project-image" src="data_cleaning_code.jpg" alt="Data prep code" />
+        </div>
+      </section>
+
+      <section class="project-section" id="finding-age-distribution">
+        <div class="content-card">
+<h2>Most NBA Players Are Between 23 and 28 Years Old</h2>
+          <p>
+            Before looking at performance, I wanted to understand the age distribution of the NBA player population itself.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="age_games_graph.jpg" alt="Age distribution chart for NBA players" />
+          </div>
+          <break>
+          </break>
+          <p>
+            The distribution is unimodal and moderately right-skewed, with the highest concentration of games occurring between ages 23 and 28 and a mode around age 25. Participation declines steadily beyond age 30, while the long right tail reflects the relatively small group of players who remain in the league into their late thirties.
+          </p>
+          <p>
+            This provides a useful baseline for examining whether player performance follows a similar aging pattern.
+          </p>
+            <div class="media-pair">
+            <img class="project-image" src="age_games_code.jpg" alt="code for Age distribution chart for NBA players" />
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="finding-scoring-decline">
+        <div class="content-card">
+<h2>Scoring Production Declines Slightly With Age</h2>
+          <p>
+            To examine how scoring changes with age, I fit a simple linear regression model using points scored as the response variable and age as the predictor.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="age_points_reg_graph.jpg" alt="Points versus age regression chart for NBA players" />
+            <div class="insight-box">
+              <div class="insight-item"><strong>Regression Result</strong>
+                <span>
+                  <p>Age coefficient: -0.06 points per year </p>
+                  <p>t-statistic:-20.42</p>
+                  <p>p-value: &lt; 0.001</p>
+                  <p>R²: 0.0009</p>
+                </span>
+
+              </div>
+              <div class="insight-item"><strong>Interpretation</strong>
+                <span>
+                  <p> Each additional year of age is associated with 0.06 fewer points per game </p>
+                  <p> Relationship is statistically significant (p &lt; 0.001)</p>
+                  <p> Age explains &lt; 0.1% of scoring variation (R² = 0.0009)</p>
+                </span>
+              </div>
+            </div>
+            <p>The model identified a statistically significant negative relationship between age and scoring production (β = -0.06, p &lt; 0.001), suggesting that players score slightly fewer points as they get older. However, the effect size is relatively small, with each additional year of age associated with a decrease of roughly 0.06 points per game.</p>
+            <p>Perhaps more interestingly, age alone explains very little of the variation in scoring performance (R² = 0.0009). While the relationship is statistically significant, scoring is clearly influenced by many other factors beyond age, including player role, skill level, team context, and playing time.</p>
+            <img class="project-image" src="age_point_reg.jpg" alt="Detailed scoring regression visual by NBA player age" />
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="finding-veteran-minutes">
+        <div class="content-card">
+<h2>Veteran Players Continue Receiving Significant Playing Time</h2>
+          <p>
+            Using the same linear regression approach, I next examined whether age was associated with changes in playing time across the league.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="age_time_reg_graph.jpg" alt="Minutes versus age regression chart for NBA players" />
+            <div class="insight-box">
+              <div class="insight-item"><strong>Regression Result</strong>
+                <span>
+                  <p>Age coefficient: +0.03 minutes per year</p>
+                  <p>t-statistic: 7.01</p>
+                  <p>p-value: &lt; 0.001</p>
+                  <p>R²: 0.0001</p>
+                </span>
+              </div>
+              <div class="insight-item"><strong>Interpretation</strong>
+                <span>
+                  <p>Each additional year of age is associated with 0.03 more minutes played</p>
+                  <p>Relationship is statistically significant (p &lt; 0.001)</p>
+                  <p>Age explains &lt;0.1% of variation in playing time (R² = 0.0001)</p>
+
+                </span>
+              </div>
+            </div>
+            <p>Unlike scoring production, playing time exhibits a small positive relationship with age. One possible explanation is that veteran players bring qualities that extend beyond raw athletic performance, including experience, decision-making, and leadership. However, this result should be interpreted with caution due to survivorship bias. As players age, the NBA population becomes increasingly selective, with many lower-performing or lower-minute players already having exited the league. As a result, the positive relationship likely reflects both the value of experience and the fact that older players who remain active tend to be those whom teams trust most.</p>
+            <img class="project-image" src="age_time_reg.jpg" alt="Detailed chart showing veteran playing time trends" />
+          </div>
+
+        </div>
+      </section>
+
+      <section class="project-section" id="elite-players">
+        <div class="content-card">
+<h2>Elite Players Tell a Different Story</h2>
+          <p>
+            League averages can sometimes hide important patterns. To better understand elite performance, I isolated the NBA’s highest-scoring players and repeated the analysis.
+          </p>
+          <p>
+            This shift from the full league to a top-scorer segment changed the story. Instead of looking only at the average player, the analysis focused on players whose value is strongly connected to offensive production.
+          </p>
+
+<h2>Aging Has a Greater Impact on Elite Scorers</h2>
+          <p>
+            To see whether elite scorers follow a different aging curve, I isolated the ten highest-scoring players in the dataset and repeated the regression analysis.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="top10_points_reg_graph.jpg" alt="Top scorer regression chart showing points by age" />
+              <div class="insight-box">
+                <div class="insight-item"><strong>Regression Result</strong>
+                  <span>
+                    <p>Age coefficient: -0.30 points per year</p>
+                    <p>t-statistic: -18.1</p>
+                    <p>p-value: &lt; 0.001</p>
+                    <p>R²: 0.025</p>
+                  </span></div>
+                <div class="insight-item"><strong>Interpretation</strong>
+                  <span>
+                    <p>    Each additional year of age is associated with 0.30 fewer points per game</p>
+                    <p>    Relationship is statistically significant (p &lt; 0.001)</p>
+                    <p>    Age explains 2.5% of scoring variation (R² = 0.025)</p>
+
+                  </span></div>
+              </div>
+            <p>
+            Unlike the overall NBA population, elite scorers experienced a much stronger decline in scoring production as they aged. While the league-wide analysis found a decrease of just 0.06 points per year, the effect among top scorers was five times larger at 0.30 points per year. This may be because elite scorers often rely more heavily on athleticism and shot creation, making their offensive production more sensitive to aging. Additionally, many star players gradually transition from primary scoring options to facilitators and playmakers later in their careers, shifting their impact from scoring volume to overall game management.
+            </p>
+            <img class="project-image" src="top10_points_reg.jpg" alt="Detailed elite scorer aging curve visual" />
+
+<h2>Every Career Tells a Different Story</h2>
+            <img class="project-image" src="top10_players_points.jpg" alt="top10 aging curve visual" />
+            <p>While the regression reveals a clear overall decline in scoring production with age, the individual player trajectories show that this decline is far from uniform. Players such as Dirk Nowitzki, Dwyane Wade, and Paul Pierce exhibit relatively pronounced declines in their later years, while LeBron James and Kevin Durant maintained remarkably consistent scoring output well into their thirties. Kobe Bryant’s trajectory highlights both sustained excellence and a sharp late-career drop-off, while Chris Paul demonstrates how a player can remain productive despite no longer serving as a primary scoring option. Taken together, these career arcs reinforce the broader trend identified by the regression while highlighting an important reality: age affects everyone, but it does not affect everyone in the same way.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="finding-elite-minutes">
+        <div class="content-card">
+<h2>Elite Players Also Experience Reduced Playing Time</h2>
+          <p>
+            Scoring is only one measure of a player’s role. Using the same group of elite scorers, I next examined how minutes played change as players age.
+          </p>
+           <div class="media-pair">
+            <img class="project-image" src="top10_time_reg_graph.jpg" alt="Top scorer regression chart showing time played by age" />
+              <div class="insight-box">
+                <div class="insight-item"><strong>Regression Result</strong>
+                  <span>
+                    <p>Age coefficient: -0.40 minutes per year</p>
+                    <p>t-statistic: -34.89</p>
+                    <p>p-value: &lt; 0.001</p>
+                    <p>R²: 0.088</p>
+                  </span></div>
+                <div class="insight-item"><strong>Interpretation</strong>
+                  <span>
+                    <p>    Each additional year of age is associated with 0.40 fewer minutes per game</p>
+                    <p>    Relationship is statistically significant (p &lt; 0.001)</p>
+                    <p>    Age explains 8.8% of scoring variation (R² = 0.088)</p>
+
+                  </span></div>
+              </div>
+            <p>
+              Among elite scorers, playing time declines alongside scoring production as players age. The model estimates a reduction of approximately 0.40 minutes per game for each additional year of age, with age explaining nearly 9% of the variation in playing time—a substantially stronger relationship than those observed in the league-wide analysis.
+            </p>
+            <p>
+              One possible explanation is that teams deliberately manage the workloads of aging stars to reduce injury risk and preserve long-term effectiveness. Additionally, many veteran players transition away from carrying a primary scoring role, relying more on experience and playmaking rather than heavy minutes. While survivorship bias is still present, the results suggest that even elite players experience meaningful reductions in workload as they age.
+            </p>
+            <img class="project-image" src="top10_time_reg.jpg" alt="Detailed elite scorer aging curve visual" />
+
+<h2>How Teams Manage Aging Stars</h2>
+            <img class="project-image" src="top10_players_time.jpg" alt="top10 aging curve visual" />
+            <p>The individual player trajectories largely reinforce the relationship identified by the regression model. While the rate of decline varies from player to player, most elite scorers experienced a gradual reduction in playing time as they progressed through their thirties. Players such as Dirk Nowitzki, Dwyane Wade, Paul Pierce, and Chris Paul show particularly clear downward trends, while LeBron James and Kevin Durant maintained heavier workloads deeper into their careers. Even among these exceptional players, however, sustained high-minute seasons become less common with age, suggesting that workload management plays an increasingly important role in extending longevity and preserving performance. </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="individual-profiles">
+        <div class="content-card">
+<h2>Conclusions</h2>
+          <p>This analysis suggests that age does influence NBA performance, but not in the way I initially expected. Across the league as a whole, age showed only a modest relationship with scoring production and playing time. Among elite players, however, the effects appeared far more pronounced, with both scoring output and workload declining as players moved through their thirties.</p>
+          <p>At the same time, these results should be interpreted with some caution. Performance is shaped by far more than age alone, including injuries, team context, player role, coaching decisions, and changes in playing style. The stronger relationships observed among elite scorers may also reflect statistical factors. High volume scorers simply have more room for offensive decline, while restricting the analysis to players with similar roles reduces much of the variability present in league wide data, making the effects of aging easier to detect. The analysis also focused on just two metrics, points scored and minutes played, which capture only part of a player’s overall contribution on the court.</p>
+          <p>If anything, this project left me with more questions than answers. I would love to revisit this analysis in the future and explore how aging patterns differ across NBA eras, whether role players experience aging differently than stars, and how the story changes when incorporating metrics such as assists, rebounds, efficiency, advanced analytics, and overall impact measures. A player level longitudinal approach could also provide a clearer picture of how performance evolves throughout a career while helping separate the effects of aging from survivorship bias and career selection effects.</p>
+          <p>Ultimately, the data confirms what basketball fans have observed for decades: age eventually catches up to everyone. What makes players like LeBron James so fascinating is not that they escape the aging curve entirely, but that they continue finding ways to remain exceptional long after most players have begun to decline. More than anything, this project reinforced how difficult it is to separate aging from the many other factors that shape a player’s career, and how much there is still left to explore.</p>
+
+        </div>
+      </section>
+
+      
+
+      <section class="cta-button-only">
+        <a class="btn primary" href="index.html#data-science">
+          Back to Data Science
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Hamza Zia ·
+        <a href="mailto:contact@hamza-zia.com">contact@hamza-zia.com</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
