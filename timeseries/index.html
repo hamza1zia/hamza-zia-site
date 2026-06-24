@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Series Forecasting Project | Hamza Zia</title>
+
+  <style>
+    :root {
+      --bg: #eef1f5;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #f38020;
+      --accent-dark: #d96a0c;
+      --border: #dde3ea;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .project-title {
+      padding: 18px 0 8px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .project-banner {
+      padding: 8px 0 18px;
+    }
+
+    .banner-placeholder {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+    }
+
+    .banner-placeholder .project-image {
+      width: 100%;
+      max-width: none;
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+      border: none;
+      border-radius: 0;
+      display: block;
+      background: #d7dde5;
+    }
+
+    section.project-section {
+      padding: 8px 0 26px;
+    }
+
+    .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+      overflow: hidden;
+    }
+
+    .content-card h2 {
+      font-size: clamp(1.55rem, 2.4vw, 2.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+    }
+
+    .content-card h3 {
+      font-size: 1.05rem;
+      margin: 18px 0 8px;
+    }
+
+    .content-card p {
+      color: #4b5563;
+      font-size: 1rem;
+      max-width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .project-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 24px 0;
+    }
+
+    .project-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+
+    .project-table th,
+    .project-table td {
+      text-align: left;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .project-table th {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .project-table td {
+      color: #374151;
+    }
+
+    .project-table td:first-child {
+      font-weight: 650;
+      width: 35%;
+    }
+
+    .media-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 22px;
+    }
+
+    .media-pair .project-image {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #d7dde5;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .between-note {
+      width: 100%;
+      max-width: none;
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      display: block;
+    }
+
+    .between-note strong {
+      color: var(--text);
+    }
+
+    .insight-box {
+      margin: 18px 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .insight-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .insight-item strong {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    .insight-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    ul {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 18px 18px;
+      color: #4b5563;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .skill-chip {
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 12px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .cta-button-only {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 50px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(243, 128, 32, 0.22);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 880px) {
+      nav {
+        display: none;
+      }
+
+      .insight-box,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
+      header {
+        height: 64px;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 12vw, 3.2rem);
+      }
+
+      .content-card p {
+        font-size: 0.98rem;
+      }
+
+      .content-card {
+        padding: 18px;
+        border-radius: 16px;
+        width: 100%;
+      }
+
+      .project-banner {
+        padding: 8px 0 18px;
+      }
+
+      .banner-placeholder {
+        border-radius: 16px;
+      }
+
+      .banner-placeholder .project-image {
+        width: 100%;
+        max-width: none;
+        aspect-ratio: 21 / 9;
+        object-fit: cover;
+        border: none;
+        border-radius: 0;
+        display: block;
+      }
+
+      .media-pair {
+        width: 100%;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .media-pair .project-image {
+        width: 100%;
+        max-width: none;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .between-note {
+        padding: 14px;
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="../" aria-label="Back to Hamza Zia homepage">
+        <div class="brand-mark">HZ</div>
+        <span>Hamza Zia</span>
+      </a>
+
+      <nav>
+        <a href="../#project-management">Project Management</a>
+        <a href="../#service-delivery-management">Service Delivery Management</a>
+        <a href="../#data-science">Data Science</a>
+        <a href="../resume.pdf" target="_blank">Resume</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-title">
+        <h1>
+          Time Series Forecasting: <span>Predicting US Retail Sales</span>
+        </h1>
+      </section>
+
+      <section class="project-banner">
+        <div class="banner-placeholder">
+          <img class="project-image" src="tsbanner.jpg" alt="Project banner image for time series forecasting" />
+        </div>
+      </section>
+
+      <section class="project-section" id="overview">
+        <div class="content-card">
+          <h2>Project Overview</h2>
+          <p>
+            Retail sales are one of the most widely watched indicators of economic activity. When consumers spend more money, businesses expand, inventories increase, and economic growth tends to accelerate. When spending slows, it can signal broader economic weakness.          </p>
+          <p>
+            This project was completed in collaboration with my good friend <a href="https://www.linkedin.com/in/ankitda/" target="_blank">Ankit Das</a>. Together, we analyzed more than thirty years of monthly U.S. retail sales data and developed forecasting models to predict future sales activity. Rather than focusing solely on prediction accuracy, we explored the underlying structure of the data, identifying long-term growth trends, recurring seasonal patterns, and unexpected events that influenced consumer spending over time.
+          </p>
+          <p>
+            Using historical retail sales data from the Federal Reserve Economic Data (FRED) database, we applied several time series forecasting techniques including Seasonal Naive Forecasting, Exponential Smoothing (ETS), ARIMA, and Neural Network models. we evaluated each model to determine how effectively it captured the behavior of the underlying data and how accurately it could forecast future retail sales.
+          </p>
+          <p>
+            The project ultimately demonstrated that while retail sales exhibit strong long-term growth and recurring seasonal behavior, advanced forecasting models such as ARIMA and ETS are significantly better at capturing those patterns than simple benchmark approaches. The analysis also highlights how major economic disruptions, such as the COVID-19 pandemic, can introduce unusual volatility that challenges even sophisticated forecasting techniques.
+          </p>
+        </div>
+      </section>
+
+      <section class="project-section" id="data-approach">
+        <div class="content-card">
+          <h2>Data &amp; Approach</h2>
+          <p>
+            we used monthly U.S. retail sales data from the Federal Reserve Economic Data (FRED) database, covering the period from January 1992 through March 2023. Our objective was to identify underlying patterns in consumer spending and evaluate multiple forecasting approaches for predicting future retail sales activity.
+          </p>
+          <p>
+            we began with exploratory time series techniques to investigate trend, seasonality, and structural changes within the data. Because the series exhibited a strong upward trend, we applied first-order differencing to create a more stationary series suitable for forecasting. we then examined seasonality using seasonal plots and subseries visualizations, while using ACF and PACF diagnostics to analyze temporal relationships and support model selection.
+          </p>
+          <p>
+            Finally, we developed and compared several forecasting models, including Seasonal Naive, Exponential Smoothing (ETS), ARIMA, and Neural Network (NNAR) approaches. we evaluated model performance using residual diagnostics and forecast accuracy metrics.
+          </p>
+
+          <div class="project-table-wrap">
+            <table class="project-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dataset</td>
+                  <td>U.S. Monthly Retail Sales</td>
+                </tr>
+
+                <tr>
+                  <td>Data Source</td>
+                  <td>Federal Reserve Economic Data (FRED)</td>
+                </tr>
+
+                <tr>
+                  <td>Time Period</td>
+                  <td>January 1992 – March 2023</td>
+                </tr>
+
+                <tr>
+                  <td>Tools Used</td>
+                  <td>R, forecast, fpp3, ggplot2, tseries</td>
+                </tr>
+
+                <tr>
+                  <td>Data Transformation</td>
+                  <td>First-Order Differencing</td>
+                </tr>
+
+                <tr>
+                  <td>Exploratory Techniques</td>
+                  <td>Time Plots, Seasonal Plots, Subseries Analysis</td>
+                </tr>
+
+                <tr>
+                  <td>Diagnostic Tools</td>
+                  <td>ACF, PACF, Residual Analysis</td>
+                </tr>
+
+                <tr>
+                  <td>Forecasting Models</td>
+                  <td>Seasonal Naive, ETS, ARIMA, Neural Network (NNAR)</td>
+                </tr>
+
+                <tr>
+                  <td>Evaluation Metrics</td>
+                  <td>Residual Standard Deviation &amp; Diagnostic Testing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="exploratory-analysis">
+        <div class="content-card">
+          <h2>Understanding the Time Series</h2>
+          <p>
+            Before building any forecasting model, we first needed to understand the behavior of the retail sales series itself. Time series forecasting is not just about fitting a model to historical values. It requires identifying whether the data has a trend, whether patterns repeat over time, and whether the series needs to be transformed before modeling.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="tstrend.jpg" alt="Line chart showing the historical time series trend" />
+         <!--</div>  -->
+          <p>
+            The original time plot shows a clear long-term upward trend in U.S. retail sales from 1992 through 2023. Sales rose steadily for most of the period, with noticeable disruptions around the 2008 financial crisis and the COVID-19 pandemic. This confirmed that the raw series was not stationary, meaning its average level changed over time.
+          </p>
+          <p>
+            Because many forecasting models work better when the data is more stable, we applied first-order differencing. Instead of modeling total sales directly, differencing measures the month-to-month change in sales. This helped remove the long-term upward trend and shifted the focus toward short-term movement in consumer spending.
+          </p>
+            <img class="project-image" src="ts_differencing.jpg" alt="Differencing chart" />
+          <p>
+            After differencing, the series is much more centered around zero, which makes it more suitable for forecasting. The graph above shows the monthly change in retail sales, which makes unusual periods easier to see, especially the sharp drop and rebound during 2020. This is important because large shocks can influence model performance and residual behavior.
+          </p>
+          <P>
+            Next, we investigated seasonality. A seasonal plot compares the same months across different years, making it easier to see whether certain months consistently behave differently. 
+          </P>
+            <img class="project-image" src="ts_seasonal.jpg" alt="Time series decomposition chart showing trend and seasonality" />
+          <p>
+            It is tough to see explicit seasonal trends through this plot due to noise. However, looking closely, there appear to be negative sloping lines at the beginning of the plot from January to February, and positive sloping lines at the end of the plot from November to December. This suggests that retail sales may grow in the November to December period and decline in the January to February period, which aligns with holiday shopping behavior. More notable, however, are the big pink spikes in February, March, April, May, and July. The pink lines represent the 2019 and 2020 seasons, and the unusual spikes can be attributed to fluctuations during the COVID-19 pandemic. 
+          </p>
+          <p>
+            To confirm whether this pattern was consistent, we also used a subseries plot. This view groups the data by month and shows how each month behaves across the full time period.
+          </p>
+            <img class="project-image" src="ts_subseries.jpg" alt="Time series decomposition chart showing trend and seasonality" />
+          <p>
+            The blue horizontal lines show the mean change in retail sales for that specific month over the 31-year period. It is worth highlighting that the averages for some of the months may be skewed due to economic fluctuations that occurred during this time period, such as the 2008 recession and the COVID-19 pandemic. At a glance, the subseries plot suggests that seasonality is present, but it is not overwhelmingly strong.
+          </p>
+          <p>
+            Finally, we reviewed the ACF and PACF plots. These diagnostics show whether current sales changes are related to previous months.
+          </p>
+
+
+            <img class="project-image" src="ts_ACF.jpg" alt="Time series decomposition chart showing trend and seasonality" />
+          <p>
+            The ACF shows how strongly the differenced retail sales series is correlated with its past values. The blue horizontal lines represent the approximate 95% confidence bounds. Vertical lines that stay inside those bounds are not considered statistically significant, while lines that extend beyond them suggest meaningful autocorrelation at that lag.
+          </p>
+          <p>
+            In this ACF plot, most values fall within the blue lines, indicating that first-order differencing successfully removed much of the trend and made the series more stationary. A few spikes extend beyond the confidence bounds, including both positive and negative autocorrelations. The most notable feature is a large positive spike around a lag of 0.8, suggesting that some structure remains in the data even after differencing. For our project, the ACF helps identify whether moving average (MA) terms may be appropriate when selecting an ARIMA model.
+          </p>
+          <p>
+            The PACF shows the direct relationship between the series and its past values after controlling for the effects of intermediate lags. Like the ACF, the blue lines represent the approximate 95% confidence bounds, and vertical lines outside those bounds indicate statistically meaningful partial autocorrelation.
+          </p>
+          <p>
+            In this PACF plot, most values are again close to zero, suggesting that differencing removed much of the original dependence in the series. However, several spikes extend beyond the confidence bounds, including a particularly large positive spike around a lag of 0.8. This indicates that certain lagged values may still have a direct influence on current retail sales. For our project, the PACF is useful because it helps identify potential autoregressive (AR) terms when determining the most appropriate ARIMA specification.
+          </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="modeling">
+        <div class="content-card">
+          <h2>Comparing Forecasting Models</h2>
+          <p>
+            With a better understanding of the series and its underlying characteristics, we then developed forecasting models and compared their performance.
+          </p>
+          <p>
+            we began with a simple benchmark forecast before progressing to more advanced statistical and machine learning approaches. we evaluated four models: Seasonal Naive, Exponential Smoothing (ETS), ARIMA, and Neural Networks (NNAR).
+          </p>
+          <p>
+            For each model, we used residual diagnostics and forecast error metrics to assess how effectively it captures the patterns present in the retail sales series and whether meaningful information remains unexplained.
+          </p>
+
+          <h2>Benchmark: Seasonal Naive Forecast</h2>
+
+          <p>
+            The Seasonal Naive method serves as a benchmark against which more sophisticated forecasting models can be compared.
+          </p>
+          <p>
+            This approach assumes that future observations will behave similarly to the same period in the previous seasonal cycle. For monthly retail sales data, this means forecasts are generated using information from the corresponding month in the prior year.
+          </p>
+          <p>
+            A benchmark model is not expected to produce the most accurate forecasts. Instead, it provides a baseline that helps determine whether more advanced methods are adding meaningful predictive value.
+          </p>
+
+          <div class="media-pair">
+            <img class="project-image" src="ts_seasonal_naive.jpg" alt="Forecasting model code" />
+          
+
+          <p>
+            The residual diagnostics indicate that the Seasonal Naive model leaves a substantial amount of structure unexplained. Several spikes remain outside the confidence intervals in the residual ACF plot, suggesting that meaningful autocorrelation is still present.
+          </p>
+          <p>
+            The model produces a <strong>residual standard deviation of 9,855.1404,</strong> the highest among the models evaluated. This suggests that retail sales behavior is more complex than simple seasonal repetition and that additional information remains available for more advanced forecasting methods to capture.
+          </p>
+
+          <h2>Exponential Smoothing (ETS)</h2>
+
+          <p>
+            Next, we considered Exponential Smoothing, commonly referred to as ETS.
+          </p>
+          <p>
+            Unlike the Seasonal Naive approach, ETS assigns greater weight to more recent observations while still incorporating information from the historical series. This allows the model to adapt more effectively when recent behavior is more representative of future outcomes.
+          </p>
+            <img class="project-image" src="ts_ets_forecast.jpg" alt="Forecasting model code" />
+            <img class="project-image" src="ts_ets_residuals.jpg" alt="Forecasting model code" />
+          <p>
+            The residual diagnostics show an improvement over the benchmark model. While some autocorrelation remains, the residuals exhibit less structure overall, indicating that the model captures a larger portion of the information contained within the retail sales series.
+          </p>
+          <p>
+            The <strong>residual standard deviation falls to 6,722.83,</strong> representing a substantial improvement over the Seasonal Naive forecast. This suggests that accounting for the changing behavior of the series provides a more accurate representation of retail sales activity.
+          </p>
+          <p>
+            Although ETS performs considerably better than the benchmark approach, the residual diagnostics indicate that some predictable patterns remain unexplained. This suggests that a model capable of explicitly accounting for lagged relationships may provide additional improvements.
+          </p>
+
+          <h2>AutoRegressive Integrated Moving Average - ARIMA</h2>
+
+          <p>
+            ARIMA is one of the most widely used forecasting techniques in time series analysis. Unlike ETS, which focuses on smoothing historical observations and extrapolating underlying trend and seasonal patterns, ARIMA explicitly models the relationships between current observations, past values, and previous forecast errors. This allows the model to capture more complex temporal dependencies within the data. Because retail sales often exhibit both short-term fluctuations and recurring seasonal behavior, ARIMA provides a flexible framework for modeling these patterns and generating forecasts based on the underlying structure of the time series.
+          </p>
+          <p>
+            To identify the most appropriate model specification, we used an automated model selection procedure that evaluates multiple ARIMA configurations and selects the model that best fits the data. The selected model is: <strong>ARIMA(0,1,2)(2,1,1)[12]</strong>
+          </p>
+          <p>
+            The selected model captures both short-term fluctuations and recurring yearly patterns. The first set of parameters, (0,1,2), describes the non-seasonal component of the model. The 0 indicates that no previous sales values are used directly in forecasting, the 1 indicates that the data is differenced once to remove long-term trends and achieve stationarity, and the 2 indicates that the model incorporates information from the errors of the previous two forecasts. The second set of parameters, (2,1,1)[12], describes the seasonal component. The 2 indicates that the model learns from sales behavior in the same period during the previous two years, the 1 applies seasonal differencing to remove recurring annual patterns, and the second 1 incorporates information from forecast errors in the previous seasonal cycle. Finally, the 12 indicates that the seasonal pattern repeats every 12 months. Together, these components enable the model to account for both short-term dynamics and long-term seasonal behavior, making it well suited for forecasting retail sales.  
+          </p>
+            <img class="project-image" src="ts_arima_forecast.jpg" alt="Forecasting model code" />
+            <img class="project-image" src="ts_arima_residuals.jpg" alt="Forecasting model code" />
+          <p>
+            Among the forecasting approaches we evaluated, ARIMA produces the strongest overall performance.
+          </p>
+          <p>
+            The residual diagnostics indicate that some autocorrelation remains after fitting the model, as several spikes still extend beyond the confidence intervals in the residual ACF plot. This suggests that the model does not fully explain all of the structure present within the series.
+          </p>
+          <p>
+            However, compared to the previous forecasting approaches, ARIMA captures a larger portion of the underlying behavior of the data and produces the lowest forecast error. The model achieves a <strong>residual standard deviation of 6,648.538,</strong> narrowly outperforming the ETS model and substantially improving upon the Seasonal Naive benchmark.
+          </p>
+          <p>
+            While the residual diagnostics suggest there is still room for improvement, the combination of lower forecast error and reduced unexplained structure makes ARIMA the strongest-performing model in this analysis. The results demonstrate that explicitly modeling both seasonal patterns and temporal relationships provides a more effective representation of retail sales behavior than the alternative approaches considered.
+          </p>
+
+          <h2>Neural Network AutoRegression</h2>
+
+        <p>
+          The final approach explores a Neural Network Autoregressive model, often referred to as NNAR. Unlike ETS and ARIMA, which rely on more traditional statistical relationships and time series structures, a neural network attempts to learn patterns directly from the historical data.
+        </p>
+        <p>
+          For this model, we split the data into a training period ending in December 2018 and a testing period beginning in January 2019. we then trained the model on the earlier retail sales data and used it to generate a 12-month forecast.
+        </p>
+          <img class="project-image" src="ts_nn_forecast.jpg" alt="Forecasting model code" />
+        <p>
+          The fitted values track the historical data closely during the training period, which suggests that the model is able to learn the broad upward movement of retail sales over time. However, the actual forecast does not perform well. The green forecast line begins to decline almost immediately, while actual retail sales continue rising before experiencing the sharp disruption and rebound around 2020.
+        </p>
+        <p>
+          This divergence suggests that the neural network is not generalizing well beyond the training data. One likely reason is that the model relies solely on historical retail sales and does not incorporate external economic factors such as inflation, unemployment, interest rates, or consumer confidence. In addition, the model uses a relatively simple NNAR implementation with default hyperparameters, meaning key settings such as lag structure and network architecture are not optimized for this specific forecasting problem.
+        </p>
+        <p>
+          The results also highlight the importance of matching the model to the data. Neural networks often perform best with large, multivariate datasets containing complex nonlinear relationships. In contrast, this project uses a single monthly time series with approximately thirty years of observations. For data of this structure, traditional forecasting methods such as ETS and ARIMA are often better suited, as they are specifically designed to capture trend, seasonality, and autocorrelation in univariate time series.
+        </p>
+        <p>
+          If I revisited this project, I would explore more advanced neural network configurations, additional lag structures, and more rigorous validation techniques such as rolling cross-validation. Another promising direction would be to incorporate external economic indicators into the model, allowing the neural network to learn from a richer set of information rather than relying solely on historical retail sales.
+        </p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class="project-section" id="conclusion">
+        <div class="content-card">
+          <h2>Conclusion</h2>
+          <div class="project-table-wrap">
+            <table class="project-table">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Residual Std. Dev.</th>
+                  <th>Key Takeaway</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Seasonal Naive</td>
+                  <td>9,855.14</td>
+                  <td>Useful benchmark, but left substantial structure unexplained.</td>
+                </tr>
+                <tr>
+                  <td>ETS</td>
+                  <td>6,722.83</td>
+                  <td>Captured trend and seasonality effectively.</td>
+                </tr>
+                <tr>
+                  <td>ARIMA</td>
+                  <td>6,648.54</td>
+                  <td>Best overall performance and strongest representation of temporal relationships.</td>
+                </tr>
+                <tr>
+                  <td>NNAR</td>
+                  <td>Performed poorly out-of-sample</td>
+                  <td>Struggled to generalize beyond the training period.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            In this project, we explored more than thirty years of U.S. retail sales data to understand how different forecasting approaches perform when applied to a highly seasonal economic time series. The analysis reveals that retail sales exhibit a strong long-term growth trend, recurring seasonal patterns, and occasional structural disruptions caused by major economic events such as the 2008 financial crisis and the COVID-19 pandemic. These characteristics make retail sales a particularly useful case study for comparing forecasting methodologies.
+          </p>
+          <p>
+            Among the models we evaluated, ARIMA produced the strongest overall results, narrowly outperforming ETS and substantially improving upon the Seasonal Naive benchmark. While ETS successfully captured the underlying trend and seasonality of the series, ARIMA benefited from its ability to explicitly model temporal dependencies and forecast error relationships. The relatively small difference between ARIMA and ETS is itself an important finding. It demonstrates that model complexity alone does not guarantee meaningful improvements in forecast accuracy. Instead, forecasting performance depends on how well a model aligns with the underlying structure of the data.
+          </p>
+          <p>
+            The neural network results reinforce this point. Despite the growing popularity of machine learning methods, the NNAR model struggled to generalize beyond the training data and underperformed the traditional statistical approaches. This does not necessarily indicate that neural networks are ineffective for forecasting, but rather that they may be less suited to a relatively small univariate time series such as this one. If I were to revisit this project, I would explore a more rigorous neural network implementation using hyperparameter tuning, rolling forecast validation, and additional economic indicators such as inflation, unemployment, interest rates, and consumer confidence. These enhancements would provide a richer forecasting framework and offer a more meaningful comparison between modern machine learning approaches and traditional time series methods.
+          </p>
+        </div>
+      </section>
+
+      <section class="cta-button-only">
+        <a class="btn primary" href="../#data-science">
+          Back to Data Science
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Hamza Zia ·
+        <a href="mailto:contact@hamza-zia.com">contact@hamza-zia.com</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
