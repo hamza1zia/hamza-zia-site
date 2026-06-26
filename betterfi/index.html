@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BetterFi: Combating Predatory Lending | Hamza Zia</title>
+
+  <style>
+    :root {
+      --bg: #eef1f5;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #f38020;
+      --accent-dark: #d96a0c;
+      --border: #dde3ea;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .project-title {
+      padding: 18px 0 8px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .project-banner {
+      padding: 8px 0 18px;
+    }
+
+    .banner-placeholder {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+    }
+
+    .banner-placeholder .project-image {
+      width: 100%;
+      max-width: none;
+      aspect-ratio: 21 / 9;
+      object-fit: cover;
+      border: none;
+      border-radius: 0;
+      display: block;
+      background: #d7dde5;
+    }
+
+    section.project-section {
+      padding: 8px 0 26px;
+    }
+
+    .content-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.06);
+      overflow: hidden;
+    }
+
+    .content-card h2 {
+      font-size: clamp(1.55rem, 2.4vw, 2.2rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+    }
+
+    .content-card h3 {
+      font-size: 1.25rem;
+      margin: 28px 0 10px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .content-card p {
+      color: #4b5563;
+      font-size: 1rem;
+      max-width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .content-card a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .content-card a:hover {
+      text-decoration: underline;
+    }
+
+    .media-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 22px;
+      margin-bottom: 18px;
+    }
+
+    .media-pair .project-image {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #d7dde5;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .image-caption {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: -8px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 18px 18px;
+      color: #4b5563;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .skill-chip {
+      background: rgba(238, 241, 245, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 12px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #111827;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.10);
+      margin: 22px 0 18px;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .cta-button-only {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 50px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(243, 128, 32, 0.22);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      color: var(--muted);
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 880px) {
+      nav {
+        display: none;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
+      header {
+        height: 64px;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 12vw, 3.2rem);
+      }
+
+      .content-card p {
+        font-size: 0.98rem;
+      }
+
+      .content-card {
+        padding: 18px;
+        border-radius: 16px;
+        width: 100%;
+      }
+
+      .project-banner {
+        padding: 8px 0 18px;
+      }
+
+      .banner-placeholder {
+        border-radius: 16px;
+      }
+
+      .banner-placeholder .project-image {
+        width: 100%;
+        max-width: none;
+        aspect-ratio: 21 / 9;
+        object-fit: cover;
+        border: none;
+        border-radius: 0;
+        display: block;
+      }
+
+      .media-pair {
+        width: 100%;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .media-pair .project-image {
+        width: 100%;
+        max-width: none;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="../" aria-label="Back to Hamza Zia homepage">
+        <div class="brand-mark">HZ</div>
+        <span>Hamza Zia</span>
+      </a>
+
+      <nav>
+        <a href="../#project-management">Project Management</a>
+        <a href="../#service-delivery-management">Service Delivery Management</a>
+        <a href="../#data-science">Data Science</a>
+        <a href="../resume.pdf" target="_blank">Resume</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-title">
+        <h1>
+          BetterFi: <span>Combating Predatory Lending</span>
+        </h1>
+      </section>
+
+      <section class="project-banner">
+        <div class="banner-placeholder">
+          <img class="project-image" src="banner_poster.jpg" alt="BetterFi project banner image" />
+        </div>
+      </section>
+
+      <section class="project-section" id="overview">
+        <div class="content-card">
+          <h2>Using Data Science for Social Good</h2>
+          <p>
+            I had the opportunity to serve as a Data Science Fellow at Sewanee DataLab, a summer fellowship at the University of the South that partners interdisciplinary student teams with nonprofit organizations to solve real-world problems using data science. The program was conducted in collaboration with Data Science for Social Good (DSSG), an initiative founded at the University of Chicago and now hosted by institutions such as Carnegie Mellon University and Johns Hopkins University. Throughout the fellowship, we participated in workshops focused on machine learning, data visualization, statistical modeling, and responsible AI, while working directly with community organizations to build practical, data-driven solutions.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="group_picture.jpg" alt="Sewanee DataLab group picture" />
+          <p>
+            For our capstone project, I worked alongside <a href="https://www.linkedin.com/in/elizabeth-morris-414651230/" target="_blank" rel="noopener">Elizabeth Morris</a> and <a href="https://www.linkedin.com/in/tilina/" target="_blank" rel="noopener">Tilina Alzaban</a> as we partnered with BetterFi, a nonprofit Community Development Financial Institution (CDFI) dedicated to helping individuals escape the cycle of predatory lending. BetterFi provides affordable alternatives to high-interest payday, title, and flex loans, giving underserved and underbanked communities access to safer financial products and a path toward long-term financial stability.
+          <p>
+            <img class="project-image" src="work_session.jpg" alt="BetterFi team work session" />
+          <p>
+            Our objective was to help BetterFi address a significant operational challenge. Loan applications were being evaluated manually on a case-by-case basis, making the review process both time-intensive and difficult to scale as the organization grew. Working closely with BetterFi, we designed and developed a decision-support toolkit that combined predictive modeling, interactive dashboards, geospatial analysis, and data quality recommendations. Rather than replacing human decision-making, the goal was to equip BetterFi with actionable insights that could streamline loan evaluations, improve consistency, and ultimately enable the organization to serve more people in communities most affected by predatory lending.
+          </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="betterfi-context">
+        <div class="content-card">
+          <h2>What is <a href="https://www.betterfi.co/" target="_blank" rel="noopener">BetterFi?</a></h2>
+          <p>
+            BetterFi is a 501(c)(3) nonprofit and certified Community Development Financial Institution (CDFI) that works to combat predatory lending by providing affordable alternatives to payday, title, and flex loans. To help borrowers escape high-interest debt cycles, BetterFi refinances existing loans into lower-cost installment loans while also providing financial guidance that helps clients build long-term financial stability.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="betterfi_poster.jpg" alt="BetterFi poster" />
+          </div>
+          <p>
+            As we began researching the problem, the scale of predatory lending quickly became apparent. Tennessee consistently ranks among the states with the highest concentration of payday and title lenders, and at the time of our research there were more payday lending locations across the state than McDonald’s restaurants. For many families facing an unexpected expense, these loans may appear to offer immediate relief. In reality, however, triple-digit interest rates and excessive fees often trap borrowers in cycles of debt where monthly payments barely reduce the original loan balance. You can learn more about BetterFi by visiting <a href="https://www.betterfi.co/" target="_blank" rel="noopener">BetterFi.co→</a>
+          </p>
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/eCaaRKo5gBo?si=uIeD9GFSBH63QbtF"
+              title="BetterFi project or organization video"
+              loading="lazy"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="media-pair">
+            
+          </div>
+
+          <h2>BetterFi's Bottleneck </h2>
+
+          <p>
+            BetterFi was already making a meaningful difference by offering a community-focused alternative, but as a small nonprofit with limited staff and resources, scaling that impact presented its own challenge. Every loan application was reviewed manually by a lending committee using historical client information and professional judgment. While this approach ensured careful consideration of each applicant, it was time-consuming, difficult to standardize, and increasingly challenging as the organization continued to grow. 
+
+        </div>
+      </section>
+
+      <section class="project-section" id="what-we-built">
+        <div class="content-card">
+          <h2>Our Solution</h2>
+          <p>
+            To address BetterFi’s operational challenges, we designed and developed a decision-support toolkit that combined predictive modeling, interactive dashboards, geospatial analysis, and data quality recommendations into a single, cohesive solution. Rather than focusing on a single machine learning model, we approached the project from an operational perspective. BetterFi needed a practical system that could support lending decisions, uncover meaningful patterns in historical data, identify communities most affected by predatory lending, and establish a stronger foundation for future data-driven decision making. Our objective was never to replace the expertise of BetterFi’s lending committee—the toolkit was designed to complement the existing review process by streamlining loan evaluations and providing more consistent, data-informed recommendations.
+          </p>
+          <p>
+            The project was built using three anonymized datasets provided by BetterFi: client information, loan records spanning 2018 through 2022, and transaction data capturing repayment activity. To complement these internal datasets, we also incorporated external data on payday and title lending locations throughout Tennessee, along with county-level demographic and socioeconomic information. Together, these data sources allowed us to build a toolkit that not only assisted with individual lending decisions, but also provided broader operational and geographic insights that could help BetterFi expand its impact over time.
+          </p>
+
+          <div class="media-pair">
+            <img class="project-image" src="betterfi_meeting.jpg" alt="Meeting with BetterFi project partner" />
+            <p class="image-caption">Team meeting with Spike Hosch—Executive Director of BetterFi</p>
+          </div>
+
+          <h3>Predictive Model</h3>
+          <p>
+            The first major component of the toolkit was an interactive dashboard that integrated a predictive model into BetterFi’s loan review workflow. Loan officers could enter an applicant’s information and generate a repayment prediction showing the probability that a loan would either be paid in full or ultimately be charged off. Rather than replacing the lending committee’s judgment, the model was designed to provide an additional layer of objective, data-driven insight during the review process.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="model_dashboard.jpg" alt="Predictive model dashboard input screenshot" />
+          <p>
+            To develop the model, we trained and evaluated both logistic regression and decision tree classifiers. While logistic regression provided a strong statistical baseline, the decision tree consistently achieved better predictive performance while offering an important practical advantage: interpretability. Because every prediction could be traced through a series of decision rules, BetterFi staff could understand how different applicant characteristics influenced the recommendation, making the model easier to trust and incorporate into their existing decision-making process.
+          </p>
+          <p>
+            Building a reliable model required balancing predictive performance with the realities of the available data. The historical dataset contained a relatively small number of loan observations compared to the number of applicant characteristics available for training, increasing the risk of overfitting. To improve the model’s ability to generalize to new applicants, we evaluated performance using 10-fold cross-validation and limited the final model to variables that were both statistically informative and appropriate for lending decisions. The selected features captured several dimensions of an applicant’s financial profile, including income, expenses, employment, loan size, repayment schedule, and geographic location. Together, these variables provided insight into an applicant’s repayment capacity, existing financial obligations, and overall lending risk, while avoiding unnecessary model complexity. During evaluation, the decision tree correctly classified loan outcomes in approximately 86% of cases, demonstrating that historical lending data could provide meaningful support for future lending decisions while still complementing, rather than replacing, human expertise.
+          </p>
+          </div>
+
+          <h3>Interactive Dashboard for Data Insights</h3>
+          <p>
+            While the predictive model focused on individual loan applications, the second component of the toolkit provided BetterFi with an interactive analytics dashboard for exploring its historical client, loan, and transaction data. Rather than relying solely on case-by-case lending decisions, BetterFi could interact with their existing data to better understand client demographics, lending trends, repayment behavior, and overall portfolio characteristics.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="analytics_dashboard_demographics.jpg" alt="BetterFi analytics dashboard demographics screenshot" />
+            <p>
+              To make the dashboard intuitive to navigate, the visualizations were organized into three primary categories: <strong>Demographics</strong>, <strong>Income & Expenses</strong>, and <strong>Loan Details</strong>. The Demographics section allowed BetterFi to explore characteristics such as application method, age, sex, ethnicity, geographic location, and population classification, helping identify who their clients were and where they were coming from. The Income & Expenses section examined employment, income levels, income frequency, banking status, household expenses, vehicle ownership, and other financial characteristics that provided insight into applicants’ overall financial circumstances. Finally, the Loan Details section explored lending activity itself, including approved loan amounts, loan purposes, repayment status, payment schedules, reference information, and loan acceptance outcomes, providing a comprehensive view of how loans were being issued and repaid over time. 
+            </p>
+            <img class="project-image" src="dashboard_presentation.jpg" alt="BetterFi dashboard presentation" />
+            <p>
+              Together, these interactive visualizations transformed BetterFi’s historical data into an accessible decision-support resource. They could quickly explore relationships between applicant characteristics and repayment outcomes, identify trends across different loan types and financial profiles, and better understand the factors influencing lending performance. Beyond supporting day-to-day operations, the dashboard also helped identify which variables were most informative for future modeling efforts and provided a stronger analytical foundation for refining BetterFi’s lending strategy as the organization continued to grow.
+            </p>
+          </div>
+          
+
+          <h3>Interactive Map of Predatory Lending Locations</h3>
+          <p>
+            The final analytical component of the project was an interactive geospatial dashboard designed to visualize the landscape of predatory lending across Tennessee. While the predictive model and analytics dashboard focused on BetterFi’s internal data, this map incorporated external datasets to provide a broader view of the communities BetterFi serves. By combining the locations of payday and title lenders with county-level demographic information, the map transformed raw geographic data into a practical planning and outreach tool.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="map_dashboard.jpg" alt="Interactive predatory lending map screenshot" />
+            <p>
+              Users could explore potential predatory lending locations alongside county-level median household income, population statistics, and publicly available annual percentage rates (APRs). This provided valuable context for understanding where high-cost lending was most concentrated and how those locations related to the socioeconomic characteristics of surrounding communities. Rather than presenting these data independently, the dashboard brought them together into a single interactive visualization that made regional trends apparent.
+            </p>
+            <img class="project-image" src="map_presentation.jpg" alt="Interactive map county detail screenshot" />
+            <p> 
+              This component extended the project beyond operational efficiency and connected it directly to BetterFi’s broader mission of promoting financial equity. The map could serve as both an educational resource for the public and a strategic planning tool for the organization, helping identify underserved communities where outreach efforts, partnerships, and financial education initiatives could have the greatest impact. By visualizing the problem geographically, BetterFi was able to move beyond individual loan applications and better understand the communities most affected by predatory lending.
+            </p>
+          </div>
+
+          <h3>Data Quality Guidelines and Future Data Collection</h3>
+          <p>
+            One of the most important insights from the project was that predictive performance depends just as much on data quality as it does on model selection. As we worked with BetterFi’s data, we found that BetterFi collected applicant information through several different channels, including in-person interviews, phone applications, partner organizations, and online forms. While this provided valuable historical data, differences in data collection practices resulted in inconsistent formats, missing values, and varying levels of completeness, all of which limited the reliability of downstream analysis and the model’s ability to generalize to future applicants.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="data_quality.jpg" alt="Data quality missing values chart" />
+          <p>
+            To address these challenges, we developed a set of data quality guidelines centered around three core principles: <strong>accuracy</strong>, <strong>consistency</strong>, and <strong>validation</strong>. Our recommendations included creating a standardized data dictionary to establish common definitions and formatting rules for every field, improving the application interface with clearer instructions and dropdown menus where appropriate, and implementing real-time validation checks to prevent incomplete or improperly formatted data from being entered into the system. We also recommended additional quality assurance for applications submitted in person and through partner organizations, where inconsistencies were more likely to occur. Together, these recommendations established a framework for collecting cleaner, more standardized data that would improve both operational reporting and future predictive modeling efforts.
+          </p>
+          <p>
+            Beyond improving the existing application process, we also identified several additional variables that could strengthen future analyses. These included education level, marital status, household dependents, number of income providers within a household, employment duration, employment history, and employment location. Collecting these variables would provide a more complete picture of an applicant’s financial stability while enabling future models to better capture the factors that influence repayment behavior. More broadly, this component of the project reinforced an important principle of applied data science: sustainable analytical systems depend not only on strong models, but also on well-designed data collection processes that continue to improve over time.
+          </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section" id="conclusion">
+        <div class="content-card">
+          <h2>Conclusion</h2>
+          <p>
+            The fellowship concluded with a public showcase where each team formally presented its project to a live audience before transitioning into interactive demonstration booths. After delivering our presentation, we had the opportunity to discuss our work one-on-one with attendees, answer technical questions, and demonstrate the software we had built throughout the summer. Presenting both the broader story behind the project and the technical decisions that supported it was an incredibly rewarding experience, and seeing our work spark meaningful discussions reinforced the value of using data science to solve real-world problems.
+          </p>
+          <div class="media-pair">
+            <img class="project-image" src="betterfi_presentation.jpg" alt="BetterFi project presentation" />
+          <p>
+            Beyond the technical skills I developed, this fellowship fundamentally changed the way I think about data science. Through workshops, seminars, and conversations with experienced data scientists and industry leaders, I gained exposure to modern machine learning techniques while learning how to translate technical concepts into practical solutions for organizations working to improve their communities. Just as importantly, I developed lasting friendships with an incredibly talented group of fellows whose curiosity, collaboration, and willingness to challenge one another made the experience just as valuable as the project itself.
+          </p>
+            <img class="project-image" src="betterfi_team.jpg" alt="BetterFi project team" />  
+          <p>
+            Looking back, BetterFi was much more than a machine learning project. The experience demonstrated that successful data science extends far beyond building predictive models. It requires understanding the people behind the data, designing solutions that integrate naturally into existing workflows, and recognizing that technology is most impactful when it helps organizations make better decisions. That perspective continues to shape how I approach every technical project today, and it remains one of the reasons I am passionate about applying modern data science and artificial intelligence to solve meaningful problems at an even larger scale.
+          </p>
+
+          <a href="https://github.com/sewaneedata/betterfi" target="_blank" rel="noopener">Explore the complete project repository on GitHub →</a> 
+
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-button-only">
+        <a class="btn primary" href="../#data-science">
+          Back to Data Science
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Hamza Zia ·
+        <a href="mailto:contact@hamza-zia.com">contact@hamza-zia.com</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
