@@ -543,6 +543,84 @@
       text-decoration: none;
     }
 
+    #data-science .project-carousel {
+      position: relative;
+      margin-top: 20px;
+      width: 100%;
+      min-height: auto;
+    }
+
+    #data-science .project-card {
+      position: static;
+      display: none;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      overflow: visible;
+    }
+
+    #data-science .project-card.active {
+      display: block;
+      transform: none;
+    }
+
+    #data-science .project-card:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    #data-science .project-card strong {
+      display: none;
+    }
+
+    #data-science .project-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 0;
+    }
+
+    #data-science .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      font-size: 1.55rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 5;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.18);
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #data-science .carousel-arrow:hover {
+      transform: translateY(-50%) scale(1.06);
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(31, 41, 55, 0.22);
+    }
+
+    #data-science .carousel-arrow.prev {
+      left: 18px;
+    }
+
+    #data-science .carousel-arrow.next {
+      right: 18px;
+    }
+
     @media (max-width: 880px) {
       nav {
         display: none;
@@ -554,8 +632,30 @@
       }
 
       .hero {
+        display: flex;
+        flex-direction: column;
         min-height: auto;
         padding-top: 34px;
+      }
+
+      .hero-content {
+        display: contents;
+      }
+
+      .hero h1 {
+        order: 1;
+      }
+
+      .portrait-wrap {
+        order: 2;
+      }
+
+      .hero-copy {
+        order: 3;
+      }
+
+      .actions {
+        order: 4;
       }
 
       .stats,
@@ -631,6 +731,31 @@
         height: auto;
         object-fit: contain;
       }
+
+      #data-science .project-carousel {
+        min-height: auto;
+      }
+
+      #data-science .project-card img {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        object-fit: contain;
+      }
+
+
+      #data-science .carousel-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+      }
+
+      #data-science .carousel-arrow.prev {
+        left: 10px;
+      }
+
+      #data-science .carousel-arrow.next {
+        right: 10px;
+      }
     }
   </style>
 </head>
@@ -647,23 +772,23 @@
         <a href="#project-management">Project Management</a>
         <a href="#service-delivery-management">Service Delivery Management</a>
         <a href="#data-science">Data Science</a>
-        <a href="resume.pdf" target="_blank">Resume</a>
+        <a href="Hamza_Zia_Resume.pdf" target="_blank">Resume</a>
       </nav>
     </header>
 
     <main>
       <section class="hero">
-        <div>
+        <div class="hero-content">
 
 
           <h1>Turning technical complexity into <span>clear execution.</span></h1>
 
           <p class="hero-copy">
-            I am a Google Certified Project Manager with 2 years of experience delivering enterprise technology solutions across cybersecurity, cloud infrastructure, and web performance optimization. I have managed Cloudflare projects and managed services engagements for global organizations, including Fortune 500 companies. My background in mathematics, economics, and data science provides a strong foundation in statistical analysis, predictive modeling, and data-driven decision making.
+            I am a Google Certified Project Manager with 2 years of experience delivering enterprise technology solutions across cybersecurity, cloud infrastructure, and web performance optimization. I have managed Cloudflare projects and managed services engagements for global organizations, including Fortune 500 companies. My background in Mathematics and Data Science enables me to combine analytical thinking with practical execution, transforming complex technical challenges into structured, data-driven solutions.
           </p>
 
           <div class="actions">
-            <a class="btn primary" href="resume.pdf" target="_blank">View Resume</a>
+            <a class="btn primary" href="Hamza_Zia_Resume.pdf" target="_blank">View Resume</a>
             <a class="btn secondary" href="mailto:contact@hamza-zia.com">Email Me</a>
           </div>
         </div>
@@ -730,7 +855,7 @@
           <div class="focus-section" id="service-delivery-management">
             <h3>Service Delivery Management</h3>
             <p>
-              Point of contact for 12+ Cloudflare Managed Services clients, coordinating service delivery, operational planning, and client engagement. Responsable for SLA management, incident and escalation coordination, operational reporting, stakeholder reviews, service health monitoring, change management oversight, and continuous service improvement initiatives.
+              Point of contact for 12+ Cloudflare Managed Services clients, coordinating service delivery, operational planning, and client engagement. Proven track record of building trusted client relationships, improving operational maturity, and delivering reliable managed services across complex enterprise environments.
             </p>
 
             <details class="portfolio-toggle">
@@ -797,7 +922,7 @@
           <div class="focus-section" id="data-science">
             <h3>Data Science</h3>
             <p>
-              Using data to explore patterns, answer meaningful questions, and support better decision-making. These projects combine statistical analysis, predictive modeling, and data visualization to uncover insights across sports performance, financial risk, and consumer behavior.
+              I enjoy combining statistical analysis, predictive analytics, machine learning, and data visualization to solve complex problems and support evidence-based decision making. From exploratory analysis and predictive modeling to interactive dashboards and data storytelling, I enjoy building solutions that help organizations make data driven decisions. Explore the projects below to see how I transform complex data into practical insights.
             </p>
 
             <div class="project-carousel" aria-label="Data science project carousel">
@@ -816,6 +941,9 @@
                 <strong>Time Series Forecasting</strong>
                 <img src="tsbanner.jpg" alt="Banner image for time series project" />
               </a>
+
+              <button class="carousel-arrow prev" type="button" aria-label="Previous data science project">‹</button>
+              <button class="carousel-arrow next" type="button" aria-label="Next data science project">›</button>
             </div>
 
             <div class="carousel-dots" aria-label="Data science carousel controls">
@@ -869,9 +997,29 @@
       dot.addEventListener("click", () => showProject(index));
     });
 
-    setInterval(() => {
+    const prevProject = document.querySelector(".carousel-arrow.prev");
+    const nextProject = document.querySelector(".carousel-arrow.next");
+
+    let projectCarouselTimer;
+
+    function startProjectCarouselTimer() {
+      clearInterval(projectCarouselTimer);
+      projectCarouselTimer = setInterval(() => {
+        showProject((activeProject + 1) % projectCards.length);
+      }, 4000);
+    }
+
+    prevProject.addEventListener("click", () => {
+      showProject((activeProject - 1 + projectCards.length) % projectCards.length);
+      startProjectCarouselTimer();
+    });
+
+    nextProject.addEventListener("click", () => {
       showProject((activeProject + 1) % projectCards.length);
-    }, 4000);
+      startProjectCarouselTimer();
+    });
+
+    startProjectCarouselTimer();
   </script>
 
 </body>
