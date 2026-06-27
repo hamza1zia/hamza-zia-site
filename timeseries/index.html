@@ -157,6 +157,16 @@
       margin-bottom: 16px;
     }
 
+    .content-card a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .content-card a:hover {
+      text-decoration: underline;
+    }
+
     .project-table-wrap {
       width: 100%;
       overflow-x: auto;
@@ -434,10 +444,10 @@
           <p>
             Retail sales are one of the most widely watched indicators of economic activity. When consumers spend more money, businesses expand, inventories increase, and economic growth tends to accelerate. When spending slows, it can signal broader economic weakness.          </p>
           <p>
-            This project was completed in collaboration with my good friend <a href="https://www.linkedin.com/in/ankitda/" target="_blank">Ankit Das</a>. Together, we analyzed more than thirty years of monthly U.S. retail sales data and developed forecasting models to predict future sales activity. Rather than focusing solely on prediction accuracy, we explored the underlying structure of the data, identifying long-term growth trends, recurring seasonal patterns, and unexpected events that influenced consumer spending over time.
+            This project was completed in collaboration with my good friend <a href="https://www.linkedin.com/in/ankitda/" target="_blank" rel="noopener">Ankit Das</a>. Together, we analyzed more than thirty years of monthly U.S. retail sales data and developed forecasting models to predict future sales activity. Rather than focusing solely on prediction accuracy, we explored the underlying structure of the data, identifying long-term growth trends, recurring seasonal patterns, and unexpected events that influenced consumer spending over time.
           </p>
           <p>
-            Using historical retail sales data from the Federal Reserve Economic Data (FRED) database, we applied several time series forecasting techniques including Seasonal Naive Forecasting, Exponential Smoothing (ETS), ARIMA, and Neural Network models. we evaluated each model to determine how effectively it captured the behavior of the underlying data and how accurately it could forecast future retail sales.
+            Using historical retail sales data from the Federal Reserve Economic Data (FRED) database, we applied several time series forecasting techniques including Seasonal Naive Forecasting, Exponential Smoothing (ETS), ARIMA, and Neural Network models. We evaluated each model to determine how effectively it captured the behavior of the underlying data and how accurately it could forecast future retail sales.
           </p>
           <p>
             The project ultimately demonstrated that while retail sales exhibit strong long-term growth and recurring seasonal behavior, advanced forecasting models such as ARIMA and ETS are significantly better at capturing those patterns than simple benchmark approaches. The analysis also highlights how major economic disruptions, such as the COVID-19 pandemic, can introduce unusual volatility that challenges even sophisticated forecasting techniques.
@@ -449,13 +459,13 @@
         <div class="content-card">
           <h2>Data &amp; Approach</h2>
           <p>
-            we used monthly U.S. retail sales data from the Federal Reserve Economic Data (FRED) database, covering the period from January 1992 through March 2023. Our objective was to identify underlying patterns in consumer spending and evaluate multiple forecasting approaches for predicting future retail sales activity.
+            We used monthly U.S. retail sales data from the Federal Reserve Economic Data (FRED) database, covering the period from January 1992 through March 2023. Our objective was to identify underlying patterns in consumer spending and evaluate multiple forecasting approaches for predicting future retail sales activity.
           </p>
           <p>
-            we began with exploratory time series techniques to investigate trend, seasonality, and structural changes within the data. Because the series exhibited a strong upward trend, we applied first-order differencing to create a more stationary series suitable for forecasting. we then examined seasonality using seasonal plots and subseries visualizations, while using ACF and PACF diagnostics to analyze temporal relationships and support model selection.
+            We began with exploratory time series techniques to investigate trend, seasonality, and structural changes within the data. Because the series exhibited a strong upward trend, we applied first-order differencing to create a more stationary series suitable for forecasting. We then examined seasonality using seasonal plots and subseries visualizations, while using ACF and PACF diagnostics to analyze temporal relationships and support model selection.
           </p>
           <p>
-            Finally, we developed and compared several forecasting models, including Seasonal Naive, Exponential Smoothing (ETS), ARIMA, and Neural Network (NNAR) approaches. we evaluated model performance using residual diagnostics and forecast accuracy metrics.
+            Finally, we developed and compared several forecasting models, including Seasonal Naive, Exponential Smoothing (ETS), ARIMA, and Neural Network (NNAR) approaches. We evaluated model performance using residual diagnostics and forecast accuracy metrics.
           </p>
 
           <div class="project-table-wrap">
@@ -521,7 +531,7 @@
         <div class="content-card">
           <h2>Understanding the Time Series</h2>
           <p>
-            Before building any forecasting model, we first needed to understand the behavior of the retail sales series itself. Time series forecasting is not just about fitting a model to historical values. It requires identifying whether the data has a trend, whether patterns repeat over time, and whether the series needs to be transformed before modeling.
+            Before building any forecasting model, we first needed to understand the behavior of the retail sales series itself. Time series forecasting involves more than simply fitting a model to historical values. It requires identifying whether the data has a trend, whether patterns repeat over time, and whether the series needs to be transformed before modeling.
           </p>
           <div class="media-pair">
             <img class="project-image" src="tstrend.jpg" alt="Line chart showing the historical time series trend" />
@@ -541,7 +551,7 @@
           </P>
             <img class="project-image" src="ts_seasonal.jpg" alt="Time series decomposition chart showing trend and seasonality" />
           <p>
-            It is tough to see explicit seasonal trends through this plot due to noise. However, looking closely, there appear to be negative sloping lines at the beginning of the plot from January to February, and positive sloping lines at the end of the plot from November to December. This suggests that retail sales may grow in the November to December period and decline in the January to February period, which aligns with holiday shopping behavior. More notable, however, are the big pink spikes in February, March, April, May, and July. The pink lines represent the 2019 and 2020 seasons, and the unusual spikes can be attributed to fluctuations during the COVID-19 pandemic. 
+            It is difficult to identify clear seasonal patterns from this plot due to the level of noise in the data. However, looking closely, there appear to be negative sloping lines at the beginning of the plot from January to February, and positive sloping lines at the end of the plot from November to December. This suggests that retail sales may grow in the November to December period and decline in the January to February period, which aligns with holiday shopping behavior. Most notable, however, are the pronounced pink spikes in February, March, April, May, and July. The pink lines represent the 2019 and 2020 seasons, and the unusual spikes can be attributed to fluctuations during the COVID-19 pandemic. 
           </p>
           <p>
             To confirm whether this pattern was consistent, we also used a subseries plot. This view groups the data by month and shows how each month behaves across the full time period.
@@ -579,7 +589,7 @@
             With a better understanding of the series and its underlying characteristics, we then developed forecasting models and compared their performance.
           </p>
           <p>
-            we began with a simple benchmark forecast before progressing to more advanced statistical and machine learning approaches. we evaluated four models: Seasonal Naive, Exponential Smoothing (ETS), ARIMA, and Neural Networks (NNAR).
+            We began with a simple benchmark forecast before progressing to more advanced statistical and machine learning approaches. We evaluated four models: Seasonal Naive, Exponential Smoothing (ETS), ARIMA, and Neural Networks (NNAR).
           </p>
           <p>
             For each model, we used residual diagnostics and forecast error metrics to assess how effectively it captures the patterns present in the retail sales series and whether meaningful information remains unexplained.
@@ -648,7 +658,7 @@
             The residual diagnostics indicate that some autocorrelation remains after fitting the model, as several spikes still extend beyond the confidence intervals in the residual ACF plot. This suggests that the model does not fully explain all of the structure present within the series.
           </p>
           <p>
-            However, compared to the previous forecasting approaches, ARIMA captures a larger portion of the underlying behavior of the data and produces the lowest forecast error. The model achieves a <strong>residual standard deviation of 6,648.538,</strong> narrowly outperforming the ETS model and substantially improving upon the Seasonal Naive benchmark.
+            However, compared to the previous forecasting approaches, ARIMA captures a larger portion of the underlying behavior of the data and produces the lowest forecast error. The model produced a <strong>residual standard deviation of 6,648.538,</strong> narrowly outperforming the ETS model and substantially improving upon the Seasonal Naive benchmark.
           </p>
           <p>
             While the residual diagnostics suggest there is still room for improvement, the combination of lower forecast error and reduced unexplained structure makes ARIMA the strongest-performing model in this analysis. The results demonstrate that explicitly modeling both seasonal patterns and temporal relationships provides a more effective representation of retail sales behavior than the alternative approaches considered.
@@ -660,7 +670,7 @@
           The final approach explores a Neural Network Autoregressive model, often referred to as NNAR. Unlike ETS and ARIMA, which rely on more traditional statistical relationships and time series structures, a neural network attempts to learn patterns directly from the historical data.
         </p>
         <p>
-          For this model, we split the data into a training period ending in December 2018 and a testing period beginning in January 2019. we then trained the model on the earlier retail sales data and used it to generate a 12-month forecast.
+          For this model, we split the data into a training period ending in December 2018 and a testing period beginning in January 2019. We then trained the model on the earlier retail sales data and used it to generate a 12-month forecast.
         </p>
           <img class="project-image" src="ts_nn_forecast.jpg" alt="Forecasting model code" />
         <p>
@@ -719,10 +729,10 @@
           </div>
 
           <p>
-            In this project, we explored more than thirty years of U.S. retail sales data to understand how different forecasting approaches perform when applied to a highly seasonal economic time series. The analysis reveals that retail sales exhibit a strong long-term growth trend, recurring seasonal patterns, and occasional structural disruptions caused by major economic events such as the 2008 financial crisis and the COVID-19 pandemic. These characteristics make retail sales a particularly useful case study for comparing forecasting methodologies.
+            In this project, we explored more than thirty years of U.S. retail sales data to understand how different forecasting approaches perform when applied to a highly seasonal economic time series. The analysis revealed that retail sales exhibit a strong long-term growth trend, recurring seasonal patterns, and occasional structural disruptions caused by major economic events such as the 2008 financial crisis and the COVID-19 pandemic. These characteristics make retail sales a particularly useful case study for comparing forecasting methodologies.
           </p>
           <p>
-            Among the models we evaluated, ARIMA produced the strongest overall results, narrowly outperforming ETS and substantially improving upon the Seasonal Naive benchmark. While ETS successfully captured the underlying trend and seasonality of the series, ARIMA benefited from its ability to explicitly model temporal dependencies and forecast error relationships. The relatively small difference between ARIMA and ETS is itself an important finding. It demonstrates that model complexity alone does not guarantee meaningful improvements in forecast accuracy. Instead, forecasting performance depends on how well a model aligns with the underlying structure of the data.
+            Among the models we evaluated, ARIMA produced the strongest overall results, narrowly outperforming ETS and substantially improving upon the Seasonal Naive benchmark. While ETS successfully captured the underlying trend and seasonality of the series, ARIMA benefited from its ability to explicitly model temporal dependencies and forecast error relationships. The relatively small difference between ARIMA and ETS was itself an important finding. It demonstrates that model complexity alone does not guarantee meaningful improvements in forecast accuracy. Instead, forecasting performance depends on how well a model aligns with the underlying structure of the data.
           </p>
           <p>
             The neural network results reinforce this point. Despite the growing popularity of machine learning methods, the NNAR model struggled to generalize beyond the training data and underperformed the traditional statistical approaches. This does not necessarily indicate that neural networks are ineffective for forecasting, but rather that they may be less suited to a relatively small univariate time series such as this one. If I were to revisit this project, I would explore a more rigorous neural network implementation using hyperparameter tuning, rolling forecast validation, and additional economic indicators such as inflation, unemployment, interest rates, and consumer confidence. These enhancements would provide a richer forecasting framework and offer a more meaningful comparison between modern machine learning approaches and traditional time series methods.
