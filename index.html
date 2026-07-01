@@ -547,30 +547,85 @@
       position: relative;
       margin-top: 20px;
       width: 100%;
+      aspect-ratio: 16 / 9;
       min-height: auto;
+      overflow: hidden;
     }
 
     #data-science .project-card {
-      position: static;
-      display: none;
+      position: absolute;
+      inset: 0;
+      display: block;
       background: transparent;
       border: 0;
       border-radius: 0;
       padding: 0;
-      opacity: 1;
-      transform: none;
-      pointer-events: auto;
+      opacity: 0;
+      transform: translateX(100%);
+      pointer-events: none;
       overflow: visible;
+      transition: none;
+      z-index: 1;
     }
 
     #data-science .project-card.active {
-      display: block;
-      transform: none;
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    #data-science .project-card.transitioning {
+      opacity: 1;
+      transition: transform 0.55s ease;
+    }
+
+    #data-science .project-card.from-next {
+      opacity: 1;
+      transform: translateX(100%);
+      z-index: 3;
+    }
+
+    #data-science .project-card.from-prev {
+      opacity: 1;
+      transform: translateX(-100%);
+      z-index: 3;
+    }
+
+    #data-science .project-card.to-center {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 3;
+    }
+
+    #data-science .project-card.to-left {
+      opacity: 1;
+      transform: translateX(-100%);
+      z-index: 2;
+    }
+
+    #data-science .project-card.to-right {
+      opacity: 1;
+      transform: translateX(100%);
+      z-index: 2;
     }
 
     #data-science .project-card:hover {
-      transform: none;
+      transform: translateX(100%);
       box-shadow: none;
+    }
+
+    #data-science .project-card.active:hover,
+    #data-science .project-card.to-center:hover {
+      transform: translateX(0);
+    }
+
+    #data-science .project-card.to-left:hover {
+      transform: translateX(-100%);
+    }
+
+    #data-science .project-card.to-right:hover {
+      transform: translateX(100%);
     }
 
     #data-science .project-card strong {
@@ -580,7 +635,7 @@
     #data-science .project-card img {
       width: 100%;
       aspect-ratio: 16 / 9;
-      height: auto;
+      height: 100%;
       object-fit: contain;
       margin-bottom: 0;
     }
@@ -984,41 +1039,91 @@
       slideshow.src = images[current];
     }, 3000);
 
-    const projectCards = document.querySelectorAll(".project-card");
-    const carouselDots = document.querySelectorAll(".carousel-dot");
+    const projectCards = document.querySelectorAll("#data-science .project-card");
+    const carouselDots = document.querySelectorAll("#data-science .carousel-dot");
     let activeProject = 0;
+    let isProjectAnimating = false;
 
-    function showProject(index) {
-      projectCards[activeProject].classList.remove("active");
+    function clearProjectTransitionClasses(card) {
+      card.classList.remove(
+        "transitioning",
+        "from-next",
+        "from-prev",
+        "to-center",
+        "to-left",
+        "to-right"
+      );
+    }
+
+    function showProject(index, direction = 1) {
+      if (index === activeProject || isProjectAnimating) return;
+
+      isProjectAnimating = true;
+
+      const outgoingProject = projectCards[activeProject];
+      const incomingProject = projectCards[index];
+
+      projectCards.forEach((card) => {
+        if (card !== outgoingProject && card !== incomingProject) {
+          card.classList.remove("active");
+          clearProjectTransitionClasses(card);
+        }
+      });
+
+      clearProjectTransitionClasses(outgoingProject);
+      clearProjectTransitionClasses(incomingProject);
+
+      incomingProject.classList.add(direction === 1 ? "from-next" : "from-prev");
+      incomingProject.offsetWidth;
+
+      outgoingProject.classList.add("transitioning", direction === 1 ? "to-left" : "to-right");
+      incomingProject.classList.add("transitioning", "to-center");
+
       carouselDots[activeProject].classList.remove("active");
-      activeProject = index;
-      projectCards[activeProject].classList.add("active");
-      carouselDots[activeProject].classList.add("active");
+      carouselDots[index].classList.add("active");
+
+      incomingProject.addEventListener("transitionend", function finishProjectTransition(event) {
+        if (event.propertyName !== "transform") return;
+
+        incomingProject.removeEventListener("transitionend", finishProjectTransition);
+
+        outgoingProject.classList.remove("active");
+        clearProjectTransitionClasses(outgoingProject);
+        clearProjectTransitionClasses(incomingProject);
+        incomingProject.classList.add("active");
+
+        activeProject = index;
+        isProjectAnimating = false;
+      });
     }
 
     carouselDots.forEach((dot, index) => {
-      dot.addEventListener("click", () => showProject(index));
+      dot.addEventListener("click", () => {
+        const direction = index > activeProject ? 1 : -1;
+        showProject(index, direction);
+        startProjectCarouselTimer();
+      });
     });
 
-    const prevProject = document.querySelector(".carousel-arrow.prev");
-    const nextProject = document.querySelector(".carousel-arrow.next");
+    const prevProject = document.querySelector("#data-science .carousel-arrow.prev");
+    const nextProject = document.querySelector("#data-science .carousel-arrow.next");
 
     let projectCarouselTimer;
 
     function startProjectCarouselTimer() {
       clearInterval(projectCarouselTimer);
       projectCarouselTimer = setInterval(() => {
-        showProject((activeProject + 1) % projectCards.length);
+        showProject((activeProject + 1) % projectCards.length, 1);
       }, 4000);
     }
 
     prevProject.addEventListener("click", () => {
-      showProject((activeProject - 1 + projectCards.length) % projectCards.length);
+      showProject((activeProject - 1 + projectCards.length) % projectCards.length, -1);
       startProjectCarouselTimer();
     });
 
     nextProject.addEventListener("click", () => {
-      showProject((activeProject + 1) % projectCards.length);
+      showProject((activeProject + 1) % projectCards.length, 1);
       startProjectCarouselTimer();
     });
 
