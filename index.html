@@ -44,6 +44,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      z-index: 20;
     }
 
     .brand {
@@ -81,6 +83,72 @@
     nav a:hover {
       color: var(--accent);
     }
+    .mobile-menu {
+      display: none;
+      position: relative;
+    }
+
+    .mobile-menu summary {
+      list-style: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.92rem;
+      box-shadow: 0 8px 20px rgba(31, 41, 55, 0.06);
+    }
+
+    .mobile-menu summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mobile-menu summary::after {
+      content: "☰";
+      color: var(--accent);
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .mobile-menu[open] summary::after {
+      content: "×";
+      font-size: 1.15rem;
+    }
+
+    .mobile-menu-links {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: min(260px, calc(100vw - 24px));
+      display: grid;
+      gap: 4px;
+      padding: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      z-index: 30;
+    }
+
+    .mobile-menu-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 750;
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+
+    .mobile-menu-links a:hover {
+      background: rgba(243, 128, 32, 0.10);
+      color: var(--accent);
+    }
+
 
     .hero {
       display: grid;
@@ -681,6 +749,10 @@
         display: none;
       }
 
+      .mobile-menu {
+        display: block;
+      }
+
       .hero,
       .split {
         grid-template-columns: 1fr;
@@ -689,8 +761,10 @@
       .hero {
         display: flex;
         flex-direction: column;
+        gap: 22px;
         min-height: auto;
-        padding-top: 34px;
+        padding-top: 18px;
+        padding-bottom: 8px;
       }
 
       .hero-content {
@@ -699,6 +773,7 @@
 
       .hero h1 {
         order: 1;
+        margin-bottom: 0;
       }
 
       .portrait-wrap {
@@ -707,10 +782,16 @@
 
       .hero-copy {
         order: 3;
+        margin-bottom: 0;
       }
 
       .actions {
         order: 4;
+        margin-bottom: 0;
+      }
+
+      #work {
+        padding-top: 18px;
       }
 
       .stats,
@@ -753,6 +834,16 @@
 
       header {
         height: 64px;
+      }
+
+      .hero {
+        gap: 18px;
+        padding-top: 10px;
+        padding-bottom: 6px;
+      }
+
+      #work {
+        padding-top: 14px;
       }
 
       h1 {
@@ -829,6 +920,16 @@
         <a href="#data-science">Data Science</a>
         <a href="Hamza_Zia_Resume.pdf" target="_blank">Resume</a>
       </nav>
+
+      <details class="mobile-menu">
+        <summary>Menu</summary>
+        <div class="mobile-menu-links">
+          <a href="#project-management">Project Management</a>
+          <a href="#service-delivery-management">Service Delivery Management</a>
+          <a href="#data-science">Data Science</a>
+          <a href="Hamza_Zia_Resume.pdf" target="_blank">Resume</a>
+        </div>
+      </details>
     </header>
 
     <main>
@@ -1102,6 +1203,16 @@
         const direction = index > activeProject ? 1 : -1;
         showProject(index, direction);
         startProjectCarouselTimer();
+
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-links a");
+
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.removeAttribute("open");
+      });
+    });
+
       });
     });
 
@@ -1120,14 +1231,44 @@
     prevProject.addEventListener("click", () => {
       showProject((activeProject - 1 + projectCards.length) % projectCards.length, -1);
       startProjectCarouselTimer();
+
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-links a");
+
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.removeAttribute("open");
+      });
+    });
+
     });
 
     nextProject.addEventListener("click", () => {
       showProject((activeProject + 1) % projectCards.length, 1);
       startProjectCarouselTimer();
+
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-links a");
+
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.removeAttribute("open");
+      });
+    });
+
     });
 
     startProjectCarouselTimer();
+
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-links a");
+
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.removeAttribute("open");
+      });
+    });
+
   </script>
 
 </body>
